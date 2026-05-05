@@ -1,0 +1,378 @@
+/* IMPORTA FUENTES: Roboto para lectura y Share Tech Mono para el look digital */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Share+Tech+Mono&display=swap');
+
+:root {
+    /*COLORES CASIO VINTAGE*/
+    --color-lcd-green: #8da399; /*Gris-verde de las pantallas LCD apagadas*/
+    --color-lcd-text: #2b302e; /*Negro de los números digitales*/
+    --color-casio-blue: #2563eb; /*Azul*/
+    --color-casio-red: #ef4444; /*Rojo*/
+    --color-casio-gold: #d4af37; /*Amarillo*/
+
+    /*FONDOS PARA CONTENEDORES*/
+    --color-bg-primary: rgba(0, 0, 0, 0.70); /*Negro con opacidad*/
+    --color-bg-secundary: rgba(20, 20, 20, 0.30); /*Más transparente*/
+    --color-bg-soft: rgba(255, 255, 255, 0.1); /*Casi transparente*/
+  
+    /*TEXTOS*/
+    --color-text-primary: #ffffff; /*Color del texto principal*/
+    --color-text-secundary: #f8f5f5; /*Color secundario*/
+
+    /*TIPOGRAFÍA*/
+    --font-family-main: 'Roboto', sans-serif; /*Tipografía principal*/
+    --font-family-digital: 'Share Tech Mono', monospace; /*Tipografía para el reloj */
+    --font-weight-light: 300; /*Peso ligero de la fuente*/
+    --font-weight-regular: 400; /*Peso normal de la fuente*/
+    --font-weight-medium: 500; /*Peso medio para dar énfasis*/
+    --font-weight-bold: 700; /*Peso alto para títulos o elementos destacados*/
+    --font-weight-black: 900; /*Peso máximo para títulos muy llamativos*/
+
+    /*ESPACIADO // PADDING*/
+    --space-xs: 4px; /*Espaciado muy pequeño*/
+    --space-sm: 8px; /*Espaciado pequeño*/
+    --space-md: 16px; /*Espaciado estándar más utilizado*/
+    --space-lg: 32px; /*Espaciado grande entre bloques*/
+    --space-xl: 64px; /*Espaciado muy grande para separar secciones principales*/
+
+    /*BORDES*/
+    --radius-sm: 4px; /*Bordes ligeramente redondeados*/
+    --radius-md: 8px; /*Bordes redondeados estándar*/
+    --radius-lg: 16px; /*Bordes más redondeados (cards, modales, contenedores grandes)*/
+
+    /*TRANSICIONES*/
+    --transition-fast: 0.2s ease-in-out; /*Transición rápida*/
+    --transition-normal: 0.3s ease-in-out; /*Transición estándar para animaciones suaves*/
+    --transition-slow: 0.7s ease-in-out; /*Transición lenta para animaciones lentas*/
+}
+
+
+/*GO HOME Y FOOTER MENU NAV*/
+/*GO HOME*/
+.goHome-container {
+    position: fixed; /*Siempre visible*/
+    top: 20px; /*Distancia arriba*/
+    left: 20px; /*Distancia a la izquierda*/
+    z-index: 1000;/*Por encima de todo*/
+}
+
+.logocohete {
+    display: flex; /*Activa la flexbox*/
+    align-items: center; /*Alinea el icono y el texto*/
+    gap: var(--space-xs); /*Espacio entre los elementos*/
+    padding: var(--space-xs) var(--space-sm); /*Margen interno*/
+    border-radius: var(--radius-md); /*Redondea las esquinas*/
+    background-color: var(--color-bg-soft); /*Color de fondo*/
+    cursor: pointer; /*Cambia la flecha por la mano*/
+    transition: var(--transition-normal); /*Transición suave*/
+}
+
+.logocohete:hover {
+    background: var(--color-bg-secundary); /*Fondo del icono*/
+    opacity: 1; /*Sobrescribe el reset si es opaco*/
+}
+
+.goHome-container img {
+    width: 30px; /*Tamaño del cohete*/
+    height: auto; /*La altura se ajusta automaticamente*/
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3)); /*Brillo*/
+}
+
+.goHome-container h2 {
+    font-size: 14px; /*Tamaño de la fuente*/
+    color: var(--color-text-primary); /*Color*/
+    letter-spacing: 1px; /*Espacio entre letras*/
+    text-transform: uppercase; /*Texto en mayusculas*/
+}
+
+/*FOOTER MENU NAV*/
+#footerMenu {
+    position: fixed; /*Mantiene el menú visible en la misma posición*/
+    bottom: 20px; /*Margen inferior*/
+    right: 20px; /*Margen derecho*/
+    z-index: 1000; /*Queda superpuesto por encima del resto*/
+}
+
+.botones-menu {
+    display: flex; /*Genera la flexbox*/
+    gap: 15px; /*Espacio entre elementos*/
+    list-style: none; /*Quita la decoración por defecto*/
+}
+
+.botones-menu img {
+    width: 25px; /*Ancho*/
+    height: 25px;/*Alto*/
+    opacity: 0.6; /*Opacidad*/
+    transition: var(--transition-fast); /*Transición rápida*/
+}
+
+.botones-menu img:hover {
+    opacity: 1; /*Sube la opacidad*/
+    transform: scale(1.1); /*Aumenta el tamaño*/
+}
+
+
+
+
+/*FONDO DE PANTALLA*/
+.main {
+    display: flex; /*Crea la flexbox*/
+    justify-content: center; /*Centra horizontalmente*/
+    align-items: center; /*Centra verticalmente*/
+    height: 100vh; /*Para que ocupe el 100% de la altura del tamaño del navegador*/
+}
+
+
+
+
+/*RELOJ*/
+#reloj {
+    display: flex; /*Crea la flexbox*/
+    flex-direction: column; /*Pone un elemento sobre el otro*/
+    align-items: center; /*Alinea los elementos al centro respecto al eje vertical*/
+    width: fit-content; /*La caja se ajusta al texto*/
+    max-width: 450px; /*En PC nunca medirá más de 450px*/
+    margin: 0 auto; /*Para centrar la caja*/
+    background-color: var(--color-bg-primary); /*Fondo oscuro opaco*/
+    padding: var(--space-lg) var(--space-lg); /*Espacio entre contenido y caja*/
+    border-radius: var(--radius-lg); /*Redondeo de esquinas*/
+    box-shadow: var(--shadow-glow); /*Sombra de la caja*/
+}
+
+#reloj h1 {
+    font-size: 14px; /*Tamaño*/
+    font-weight: var(--font-weight-light); /*Grosor/peso de la fuente*/
+    color: var(--color-text-primary); /*Color*/
+    margin-bottom: var(--space-xs); /*Espacio inferior*/
+    text-transform: lowercase; /*Todo el texto en minusculas*/
+}
+
+#hora {
+    font-family: var(--font-family-digital); /*Simula un reloj digital*/
+    font-size: 44px; /*Tamaño de la hora*/
+    font-weight: var(--font-weight-regular); /*Grosor/peso de la fuente*/
+    color: var(--color-text-secundary); /*Color*/
+    line-height: 1; /*Para quitar los espacios arriba y abajo*/
+    margin-bottom: var(--space-xs); /*Espacio inferior*/
+}
+
+#fecha {
+    font-family: var(--font-family-digital); /*Simula un reloj digital*/
+    font-size: 20px; /*Tamaño*/
+    font-weight: var(--font-weight-light); /*Grosor/peso del texto*/
+    color: var(--color-text-primary); /*Color*/
+    margin-bottom: var(--space-md); /*Espacio inferior*/
+}
+
+#mensajeReloj {
+    font-family: var(--font-family-main); /*Tipografía*/
+    font-size: 13px; /*Tamaño*/
+    text-transform: lowercase; /*Texto en minusculas*/
+    letter-spacing: 0.5px; /*Espacio entre las letras*/
+    text-align: center; /*Alinea el texto en el centro*/
+    max-width: 350px; /*Si es muy largo de rompe en dos lineas*/
+    color: var(--color-casio-gold); /*Color del mensaje*/
+}
+
+
+/*TIEMPO WEATHER*/
+.clima-card {
+    display: flex; /*Crea la flexbox*/
+    flex-direction: column; /*Pone un elemento sobre el otro*/
+    align-items: center; /*Alinea los elementos al centro*/
+    width: 450px; /*Un ancho fijo para que los hijos sepan dónde recortar*/
+    max-width: 90vw; /*En móviles ocupará el 90% de la pantalla*/
+    margin: 0 auto; /*Para centrar la caja*/
+    background-color: var(--color-bg-primary); /*Fondo oscuro opaco*/
+    padding: var(--space-lg); /*Espacio entre contenido y caja*/
+    border-radius: var(--radius-lg); /*Redondeo de esquinas*/
+    box-shadow: var(--shadow-glow); /*Sombra de la caja*/
+    font-family: var(--font-family-main); /*Tipografía*/
+    overflow: hidden; /*Impide que la tarjeta entera tenga scroll*/
+}
+
+.clima-header {
+    font-weight: var(--font-weight-light); /*Grosor/peso de la fuente*/
+    color: var(--color-text-primary); /*Color*/
+    text-align: center; /*Alinea el texto en el centro*/
+    margin-bottom: var(--space-xs); /*Espacio inferior*/
+}
+
+.clima-header h2 {
+    font-size: 24px; /*Tamaño de la letra*/
+    font-weight: var(--font-weight-bold); /*Grosor/peso de la fuente*/
+    color: var(--color-text-primary); /*Color*/
+    text-align: center; /*Alinea el texto en el centro*/
+    margin-bottom: var(--space-xs); /*Espacio inferior*/
+}
+
+.clima-header p {
+    font-family: var(--font-family-main); /*Tipografía*/
+    font-size: 14px; /*Tamaño*/
+    letter-spacing: 0.5px; /*Espacio entre las letras*/
+    text-align: center; /*Alinea el texto en el centro*/
+}
+
+.clima-body {
+    display: flex; /*Crea la felxbox*/
+    justify-content: space-around; /*Espacio alrededor*/
+    align-items: center; /*Alinea los elementos al centro*/
+    width: 100%; /*Ocupa todo el ancho disponible*/
+    font-family: var(--font-family-main); /*Tipografía*/
+    text-transform: lowercase; /*Texto en minúsculas*/
+    color: var(--color-text-primary); /*Color del mensaje*/
+    margin-bottom: var(--space-md); /*Espacio antes del pronóstico*/
+}
+
+.temp-principal {
+    font-size: 44px; /*Tamaño de la temperatura*/
+    font-weight: var(--font-weight-black); /*Grosor/peso de la fuente*/
+    color: var(--color-text-secundary); /*Color*/
+    margin-bottom: var(--space-xs); /*Espacio inferior*/
+    margin-right: var(--space-md); /*Espacio a la derecha*/
+}
+
+.detalles-secundarios {
+    display: flex; /*Crea el contenedor flexbox*/
+    flex-direction: column; /*Pone un elemento sobre otro*/
+    font-size: 16px; /*Tamaño de la temperatura*/
+    font-weight: var(--font-weight-regular); /*Grosor/peso de la fuente*/
+    color: var(--color-text-secundary); /*Color*/
+    margin-bottom: var(--space-xs); /*Espacio inferior*/
+}
+
+.detalle-item {
+    display: flex; /*Alinea texto e icono en una misma linea*/
+    align-items: center; /*Los centra verticalmente*/
+    gap: var(--space-xs); /*Espacio entre el icono y el dato*/
+}
+
+.pronostico-horas {
+    display: flex; /*Crea la flexbox para las horas*/
+    width: 100%; /*Se ajusta al ancho de la tarjeta*/
+    overflow-x: auto; /*ACTIVA EL SCROLL HORIZONTAL SOLO AQUÍ*/
+    overflow-y: hidden; /*Evita scroll vertical*/
+    border-top: 1px solid rgba(255, 255, 255, 0.2); /*Línea de separación*/
+    color: var(--color-text-primary); /*Color del texto*/
+    padding: var(--space-md) 0; /*Espacio superior e inferior*/
+    gap: var(--space-md); /*Espacio entre las horas*/
+    list-style: none; /*Quita decorado por defecto*/
+    list-style-type: none; /*Quita cualquier estilo por defecto*/
+
+}
+
+.hora-item {
+    text-align: center; /*Centra el contenido*/
+    min-width: 50px; /*Un ancho minimo para los horarios*/
+}
+
+.hora-item span {
+    display: block; /*La hora ocupa su linea*/
+    font-size: 13px; /*Tamaño de fuente*/
+    margin-bottom: var(--space-xs); /*Espacio inferior*/
+}
+
+.hora-temp {
+    font-weight: bold;/*Grosor/peso de la tipografía*/
+    margin-top: 5px; /*Margen superior con el icono*/
+}
+.hora-item img {
+    width: 35px; /*Mantiene un ancho fijo*/
+    height: 35px; /*Mantiene un alto fijo*/
+}
+
+
+
+
+
+@media (max-width: 768px) {
+    
+/*GO HOME y FOOTER MENU NAV*/
+.goHome-container {
+    top: 10px; /*Margen con la parte superior de la pantalla*/
+    left: 10px; /*Margen con la parte izquierda de la pantalla*/
+}
+
+.logocohete {
+    padding: 5px 10px; /*Espacio entre contenido y caja*/
+}
+
+.goHome-container img {
+    width: 25px; /*Cohete más pequeño*/
+}
+
+.goHome-container h2 {
+    font-size: 12px; /*Texto más pequeño*/
+    display: none; /*Oculta el texto y deja solo el icono en móviles*/
+}
+
+/*FOOTER MENU NAV*/
+#footerMenu {
+    bottom: 15px; /*Permite centrarlo*/
+    right: 0; /*Permite centrarlo*/
+    left: 0; /*Permite centrarlo*/
+    display: flex; /*Crea la flexbox*/
+    justify-content: center; /*Centra el contenido*/
+}
+
+.botones-menu {
+    gap: 25px; /*Más espacio entre iconos*/
+    background: rgba(0, 0, 0, 0.2); /*Un fondo para que se vean mejor*/
+    padding: 10px 20px; /*Espacio entre contenido y caja*/
+    border-radius: 50px; /*Hace un círculo*/
+}
+
+.botones-menu img {
+    width: 30px; /*Iconos un poco más grandes para el táctil*/
+    height: 30px; /*Iconos un poco más grandes para el táctil*/
+    opacity: 0.9; /*Más visibles en móvil por defecto*/
+}
+
+
+/*RELOJ*/
+#reloj {
+    width: 90%; /*Que use casi todo el ancho disponible*/
+    padding: var(--space-md); /*Distancia entre los elementos y la caja*/
+}
+
+#hora {
+    font-size: 40px; /*Usamos rem para que escale mejor*/
+}
+
+#fecha {
+    font-size: 16px; /*Tamaño de tipografía*/
+}
+
+#mensajeReloj {
+    font-size: 12px; /*Tamaño de la fuente*/
+    max-width: 280px; /*Evita que sea muy grande*/
+}
+
+
+/*CLIMA WEATHER*/
+.clima-card {
+        width: 90%; /*La tarjeta ocupará el 90% del ancho de la pantalla*/
+        padding: var(--space-md); /*Reduce un poco el relleno interno*/
+    }
+
+    .temp-principal {
+        font-size: 36px; /*Reduce el tamaño de la temperatura para que quepa mejor*/
+        margin-right: var(--space-sm); /*Acorta el margen derecho*/
+    }
+
+    .clima-header h2 {
+        font-size: 20px; /*Ciudad un poco más pequeña*/
+    }
+
+    .detalles-secundarios {
+        font-size: 14px; /*Datos de humedad/viento un poco más pequeños*/
+    }
+
+    .pronostico-horas {
+        gap: 10px; /*Reduce el espacio entre horas para ver más items a la vez*/
+        padding-bottom: 10px; /*Espacio extra para que la barra de scroll no tape la temperatura*/
+    }
+
+    .hora-item {
+        flex: 0 0 55px; /*Los items de hora más estrechos*/
+    }
+}

@@ -1,0 +1,84 @@
+/*RESET*/
+*, *::before, *::after { /*Selecciona todos los elementos*/
+    box-sizing: border-box; /*Hace que los elementos no crezcan más de lo debido*/
+    margin: 0; /*Elimina los espacios exteriores predeterminados*/
+    padding: 0; /*Elimina los espacion interiores predeterminados*/
+}
+
+html, body {
+    height: 100%; /*Centra el contenido verticalmente*/
+    font-family: var(--font-family-main); /*Tipografía*/
+    line-height: 1.6; /*Distancia entre lineas, para leer bien*/
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0; /*Elimina márgenes por defecto de los títulos para un control total sobre el espaciado*/
+  padding: 0; /*Elimina relleno por defecto de los títulos para un control total sobre el espaciado*/
+  font-family: var(--font-family-main); /*Tipografía*/
+  line-height: 1.2; /*Un interlineado más compacto para títulos*/
+}
+
+h1 {
+  font-size: 54px; /*Tamaño del título principal para pantallas grandes*/
+  font-weight: var(--font-weight-black); /*900*/
+  color: var(--color-text-primary); /*Color del texto principal para el título*/
+}
+
+h2 {
+  font-size: 40px; /*Tamaño del título secundario para pantallas grandes*/
+  font-weight: var(--font-weight-bold); /*700*/
+  color: var(--color-text-primary); /*Color del texto principal para el título*/
+}
+
+h3 {
+  font-size: 32px; /*Tamaño del título terciario para pantallas grandes*/
+  font-weight: var(--font-weight-medium); /*500*/
+  color: var(--color-accent-blue); /*Color del texto de acento azul para el título*/
+}
+
+h4 {
+  font-size: 27px; /*Tamaño del título cuaternario para pantallas grandes*/
+  font-weight: var(--font-weight-medium); /*500*/
+}
+
+h5 {
+  font-size: 20px; /*Tamaño del título quinario para pantallas grandes*/
+  font-weight: var(--font-weight-regular); /*400*/
+}
+
+h6 {
+  font-size: 14px; /*Tamaño del título senario para pantallas grandes*/
+  font-weight: var(--font-weight-light); /*300*/
+  color: var(--color-text-secondary); /*Color del texto secundario para el título*/
+}
+
+a {
+  text-decoration: none; /*Elimina el subrayado por defecto de los enlaces para un estilo más limpio*/
+  color: inherit; /*Hace que los enlaces hereden el color del texto circundante para una apariencia más integrada*/
+}
+
+ul, ol {
+  list-style: none; /*Elimina los estilos de lista por defecto (viñetas y números) para un control total sobre la apariencia de las listas*/
+}
+
+img {
+  max-width: 100%; /*Hace que las imágenes sean responsivas, ajustándose al ancho de su contenedor sin excederlo*/
+  height: auto; /*Mantiene la proporción de las imágenes al ajustar su tamaño*/
+  display: block; /*Elimina el espacio inferior que aparece debajo de las imágenes al tratarlas como elementos en línea, asegurando que se comporten como bloques para un mejor control del diseño*/
+}
+
+button, input, textarea, select {
+  font-family: inherit; /*Hace que los elementos de formulario hereden la fuente del cuerpo para una apariencia consistente en todo el sitio*/
+  font-size: inherit; /*Hace que los elementos de formulario hereden el tamaño de fuente del cuerpo para una apariencia consistente en todo el sitio*/
+}
+
+button {
+  cursor: pointer; /*Cambia el cursor a una mano al pasar sobre los botones para indicar que son interactivos*/
+  border: none; /*Elimina el borde por defecto de los botones para un estilo más limpio*/
+  background: none; /*Elimina el fondo por defecto de los botones para un estilo más limpio*/
+}
+
+table {
+  border-collapse: collapse; /*Elimina el espacio entre las celdas de la tabla para un diseño más compacto y limpio*/
+  border-spacing: 0; /*Elimina el espacio entre las celdas de la tabla para un diseño más compacto y limpio*/
+}

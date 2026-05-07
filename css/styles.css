@@ -578,6 +578,7 @@ body {
         grid-template-columns: 1fr !important; /*Pasa de 3 columnas a 1 que ocupa todo el ancho disponible*/
         padding: var(--space-lg) var(--space-md) !important; /*Menos padding superior*/
         gap: var(--space-lg) !important; /*Menos espacio entre elementos*/
+        width: 90%; /*Ocupan el 90% de la pantalla*/
     }
 
     .dashboard .links-section, .dashboard #reloj, .dashboard .clima-card, .dashboard .clave {

@@ -10,8 +10,8 @@ import { generarClaveRandom } from './utils/keygenerador.js';
 //LINKS LISTA
 function initLinkList() {
     const nameInput = document.getElementById('nombre-input'); //ID HTML
-    const urlInput = document.getElementById('url-input');     //ID HTML
-    const addBtn = document.getElementById('botonAgregar');    //ID HTML
+    const urlInput = document.getElementById('url-input'); //ID HTML
+    const addBtn = document.getElementById('botonAgregar'); //ID HTML
     const container = document.getElementById('linksContainer'); //ID HTML
 
     if (!container || !addBtn) return; //Si no existen o estamos en otra página, no hace nada
@@ -65,7 +65,7 @@ function initKeyGenerator() {
     const inputLength = document.getElementById("length");
     const resultadoDiv = document.getElementById("resultadoClave");
 
-    //Solo añade el evento si los elementos existen (estamos en la página de la clave)
+    //Solo añade el evento si los elementos existen
     if (btnGenerar && inputLength && resultadoDiv) {
         btnGenerar.addEventListener('click', () => {
             const lengthValue = parseInt(inputLength.value);
@@ -92,14 +92,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (mimenu) mimenu.innerHTML = goHome();
     if (mifooter) mifooter.innerHTML = footerMenu();
 
-    //Inicialización de fondos
-    initBackgrounds();
+    initBackgrounds(); //Inicialización de fondos
 
     /*Cada función interna ya comprueba si los elementos existen antes de actuar*/
-    initLinkList();
-    initRelojDigital();   //Solo actuará si ve el ID "reloj"
-    initApp();            //Solo actuará si ve los IDs de clima
-    initKeyGenerator();   //Solo actuará si ve el ID "length"
+    initLinkList(); //Solo actuará si ve el ID 
+    initRelojDigital(); //Solo actuará si ve el ID 
+    initApp(); //Solo actuará si ve los IDs 
+    initKeyGenerator(); //Solo actuará si ve el ID 
 });
 
 

@@ -280,8 +280,8 @@ body {
     flex-direction: column; /*Pone un elemento sobre el otro*/
     align-items: center; /*Alinea los elementos al centro respecto al eje vertical*/
     width: fit-content; /*La caja se ajusta al texto*/
-    max-width: 450px; /*En PC nunca medirá más de 450px*/
-    max-height: 260px; /*Nunca medirá más de 200px*/
+    width: 450px; /*Ancho*/
+    max-height: 260px; /*Nunca medirá más de 260px*/
     background: var(--color-bg-primary); /* Fondo oscuro translúcido */
     backdrop-filter: blur(12px);    /* Desenfoque de fondo */
     border: 1px solid var(--color-lcd-text); /*Color del borde*/
@@ -328,6 +328,8 @@ body {
     text-align: center; /*Alinea el texto en el centro*/
     max-width: 350px; /*Si es muy largo de rompe en dos lineas*/
     color: var(--color-casio-gold); /*Color del mensaje*/
+    word-wrap: break-word; /*Las palabras largas se rompen y bajan de línea */
+    overflow-wrap: break-word; /*Para romper palabras*/
 }
 
 

@@ -17,6 +17,8 @@ export function initBackgrounds() { //La función que realizará la llamada
         const imgseleccionada = backgrounds[imgIndex];
 
         const body = document.body; //Selecciona la etiqueta body para aplicarlo
+        const isRoot = window.location.pathname.includes('index.html') || window.location.pathname.endsWith('/') || !window.location.pathname.includes('.html'); //Detecta si el usuario está en la raíz
+        const assetPrefix = isRoot ? '' : '../'; //Prefijo para las imagenes
         
         body.style.backgroundImage = `url("/${imgseleccionada}")`; //Ruta de las imagenes
         body.style.backgroundSize = "cover"; //La imagen cubre toda la pantalla

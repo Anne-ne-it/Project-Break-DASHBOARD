@@ -1,14 +1,14 @@
 export const backgrounds = [ //Array de rutas de las fotos para el fondo
-    '/assets/img/01selfie.jpg',
-    '/assets/img/02coche.jpg',
-    '/assets/img/03cafeteria.jpg',
-    '/assets/img/04estacion.jpg',
-    '/assets/img/05cables.jpg',
-    '/assets/img/06tunel.jpg',
-    '/assets/img/07mercado.jpg',
-    '/assets/img/08perro.jpg',
-    '/assets/img/09maquinas.jpg',
-    '/assets/img/10paraguas.jpg'
+    'assets/img/01selfie.jpg',
+    'assets/img/02coche.jpg',
+    'assets/img/03cafeteria.jpg',
+    'assets/img/04estacion.jpg',
+    'assets/img/05cables.jpg',
+    'assets/img/06tunel.jpg',
+    'assets/img/07mercado.jpg',
+    'assets/img/08perro.jpg',
+    'assets/img/09maquinas.jpg',
+    'assets/img/10paraguas.jpg'
 ];
 
 export function initBackgrounds() { //La función que realizará la llamada

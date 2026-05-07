@@ -574,20 +574,43 @@ body {
 
 
 @media (max-width: 768px) {
-    .dashboard main {
-        grid-template-columns: 1fr !important; /*Pasa de 3 columnas a 1 que ocupa todo el ancho disponible*/
-        padding: var(--space-lg) var(--space-md) !important; /*Menos padding superior*/
-        gap: var(--space-lg) !important; /*Menos espacio entre elementos*/
-        width: 90% !important; /*Ocupan el 90% de la pantalla*/
+.dashboard main {
+        grid-template-columns: 1fr !important; /*Una sola columna*/
+        padding: var(--space-md) !important; /*Reduce el padding lateral para ganar aire*/
+        gap: var(--space-md) !important; 
+        width: 100% !important; /*Cambia a 100% para controlar el margen con el padding del padre*/
+        box-sizing: border-box; /*Fundamental para que el padding no sume al ancho*/
     }
 
     .dashboard .links-section, .dashboard #reloj, .dashboard .clima-card, .dashboard .clave {
-        max-width: 90% !important; /*Menos ancho para que no se corte en pantallas pequeñas*/
-        padding: var(--space-md) !important; /*Espacio interno de las tarjetas reducido*/
+        width: 100% !important; /*Que ocupen el ancho disponible del main*/
+        max-width: 100% !important; /*Ancho máximo*/
+        margin: 0 auto; /*Centrado automático*/
+        padding: var(--space-sm) var(--space-md) !important;
+        border-radius: 12px; /*Suaviza las esquinas en móvil*/
+    }
+
+    /* Optimización del Reloj y Frase */
+    .dashboard #reloj {
+        font-size: 0.9rem !important; /*Baja un poco el tamaño general si es necesario*/
+    }
+
+    #reloj h2 {
+        font-size: 3.5rem !important; /*El número de la hora más grande y claro*/
+        margin-bottom: var(--space-xs); /*Espacio inferior*/
     }
 
     .dashboard .tiempo-container {
-        gap: var(--space-md); /*Distancia entre el reloj y el clima*/
+        display: flex; /*Crea la flexbox*/
+        flex-direction: column; /*Pone un elemento sobre otro*/
+        align-items: center; /*Centra*/
+        gap: var(--space-sm); /*Gap más pequeño*/
+    }
+
+    .links-section input, .links-section button {
+        width: 100% !important; /*Ancho máximo*/
+        height: 45px; /*Altura táctil cómoda*/
+        margin-bottom: 10px; /*Espacio con el margen*/
     }
 
 

@@ -9,12 +9,12 @@ import { generarClaveRandom } from './utils/keygenerador.js';
 
 //LINKS LISTA
 function initLinkList() {
-    const nameInput = document.getElementById('nombre-input'); // ID de tu HTML
-    const urlInput = document.getElementById('url-input');     // ID de tu HTML
-    const addBtn = document.getElementById('botonAgregar');    // ID de tu HTML
-    const container = document.getElementById('linksContainer');
+    const nameInput = document.getElementById('nombre-input'); //ID HTML
+    const urlInput = document.getElementById('url-input');     //ID HTML
+    const addBtn = document.getElementById('botonAgregar');    //ID HTML
+    const container = document.getElementById('linksContainer'); //ID HTML
 
-    if (!container || !addBtn) return; // Si no existen (estamos en otra página), no hace nada
+    if (!container || !addBtn) return; //Si no existen o estamos en otra página, no hace nada
 
     const render = () => {
         container.innerHTML = "";
@@ -37,7 +37,7 @@ function initLinkList() {
         }
     });
 
-    render(); // Primera carga
+    render(); //Primera carga
 }
 
 
@@ -47,7 +47,7 @@ async function initApp() {
     try {
         const data = await getWeatherData(defaultCity);
         if (data) {
-            // Se renderiza solo si los contenedores existen en el HTML actual
+            //Se renderiza solo si los contenedores existen en el HTML actual
             renderCurrentWeather(data, 'climaActual'); 
             renderHourlyForecast(data.forecast.forecastday[0].hour, 'climaFuturo');
         }
@@ -65,7 +65,7 @@ function initKeyGenerator() {
     const inputLength = document.getElementById("length");
     const resultadoDiv = document.getElementById("resultadoClave");
 
-    // Solo añade el evento si los elementos existen (estamos en la página de la clave)
+    //Solo añade el evento si los elementos existen (estamos en la página de la clave)
     if (btnGenerar && inputLength && resultadoDiv) {
         btnGenerar.addEventListener('click', () => {
             const lengthValue = parseInt(inputLength.value);
@@ -83,25 +83,23 @@ function initKeyGenerator() {
 
 
 //EVENTO PRINCIPAL DOMContentLoaded
-// Aquí es donde "arranca" toda tu web una vez el HTML está listo
+//Aquí es donde "arranca" toda la web una vez el HTML está listo
 document.addEventListener("DOMContentLoaded", () => {
-    // Inyección de Menú y Footer (Común a todas las páginas)
+    //Inyección de Menú y Footer
     const mimenu = document.getElementById("goHome");
     const mifooter = document.getElementById("footerMenu");
     
     if (mimenu) mimenu.innerHTML = goHome();
     if (mifooter) mifooter.innerHTML = footerMenu();
 
-    // Inicialización de fondos (Común a todas las páginas)
+    //Inicialización de fondos
     initBackgrounds();
 
-    /* Inicializaciones específicas: 
-       Cada función interna ya comprueba si los elementos existen antes de actuar
-    */
+    /*Cada función interna ya comprueba si los elementos existen antes de actuar*/
     initLinkList();
-    initRelojDigital();   // Solo actuará si ve el ID "reloj"
-    initApp();            // Solo actuará si ve los IDs de clima
-    initKeyGenerator();   // Solo actuará si ve el ID "length"
+    initRelojDigital();   //Solo actuará si ve el ID "reloj"
+    initApp();            //Solo actuará si ve los IDs de clima
+    initKeyGenerator();   //Solo actuará si ve el ID "length"
 });
 
 

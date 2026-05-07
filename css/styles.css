@@ -582,7 +582,7 @@ body {
     }
 
     .dashboard .links-section, .dashboard #reloj, .dashboard .clima-card, .dashboard .clave {
-        max-width: 100% !important; /*Menos ancho para que no se corte en pantallas pequeñas*/
+        max-width: 90% !important; /*Menos ancho para que no se corte en pantallas pequeñas*/
         padding: var(--space-md) !important; /*Espacio interno de las tarjetas reducido*/
     }
 

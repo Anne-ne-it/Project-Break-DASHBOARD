@@ -17,7 +17,7 @@ export function initBackgrounds() { //La función que realizará la llamada
         const imgseleccionada = backgrounds[imgIndex];
 
         const body = document.body; //Selecciona la etiqueta body para aplicarlo
-        body.style.backgroundImage = `url("${imgseleccionada}")`; //Ruta de las imagenes
+        body.style.backgroundImage = `url("/${imgseleccionada}")`; //Ruta de las imagenes
         body.style.backgroundSize = "cover"; //La imagen cubre toda la pantalla
         body.style.backgroundPosition = "center"; //Centra la imagen para no cortarla
         body.style.backgroundRepeat = "no-repeat"; //Evita que se repita, modo mosaico

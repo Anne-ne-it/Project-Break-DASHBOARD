@@ -575,32 +575,28 @@ body {
 
 @media (max-width: 768px) {
 .dashboard main {
-        display: flex !important; /* Cambiamos a Flex para un centrado más sencillo en móvil */
+        display: flex !important; /*Cambiamos a Flex para un centrado más sencillo en móvil*/
         flex-direction: column !important;
-        align-items: center !important; /* Centra las tarjetas horizontalmente */
+        align-items: center !important; /*Centra las tarjetas horizontalmente*/
         justify-content: center !important;
-        padding: var(--space-lg) 0 !important; /* Padding arriba/abajo, 0 a los lados */
+        padding: var(--space-lg) 0 !important; /*Padding arriba/abajo, 0 a los lados*/
         width: 100% !important;
         gap: var(--space-md) !important;
     }
 
-    .dashboard .links-section, 
-    .dashboard #reloj, 
-    .dashboard .clima-card, 
-    .dashboard .clave {
-        width: 90% !important; /* Ocupan el 90% del ancho del móvil */
-        max-width: 500px !important; /* Evita que en tablets se vean gigantes */
-        margin-left: auto !important; /* El combo de márgenes auto... */
-        margin-right: auto !important; /* ...asegura el centrado total */
+    .dashboard .links-section, .dashboard #reloj, .dashboard .clima-card, .dashboard .clave {
+        width: 90% !important; /*Ocupan el 90% del ancho del móvil*/
+        max-width: 380px !important; /*Evita que se vean gigantes */
+        margin-left: auto !important; /*asegura el centrado total*/
+        margin-right: auto !important; /*asegura el centrado total*/
         box-sizing: border-box !important;
     }
     
-    /* Ajuste extra para los enlaces que se ven algo apretados */
     .links-section .link-item {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 100%;
+        width: 90%;
     }
 
     .links-section input, .links-section button {

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" type="cohete/png" href="../assets/logos/cohetehome.png">
     <title>List</title>
 </head>
 
@@ -12,7 +13,18 @@
     <header class="go-home" id="goHome"></header>
     
     <main class="main">
-        <section class="links-container" id="linksContainer"></section>        
+        <section class="links-section" id="linksSection">
+            <div class="likns-titulo" id="linksTitulo">
+                <p>Copia aquí tu enlace de interés</p>
+                <img src="../assets/logos/links.jpg" alt="links">
+            </div>
+            <div class="input-links" id="inputLinks">
+                <input type="text" id="nombre-input" placeholder="Nombre para tu enlace" required>
+                <input type="text" id="url-input" placeholder="Añade aquí la url de interés" required>
+                <button class="boton-agregar" id="botonAgregar">Añadir enlace</button>
+            </div>
+            <ul class="links-container" id="linksContainer"></ul>
+        </section>        
         
         <footer class="footer-menu" id="footerMenu"></footer>
 

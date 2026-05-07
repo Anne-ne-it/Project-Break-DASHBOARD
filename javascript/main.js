@@ -1,30 +1,109 @@
-// MENU NAVEGACION, FOOTER, RELOJ
-import { goHome, footerMenu } from "./templates/template.js"; //Importa las funciones que generan el HTML del menú y el pie de página
-import { initRelojDigital } from "./utils/relojdigital.js"; //Importa la función encargada del reloj digital
-import { getWeatherData, renderCurrentWeather, renderHourlyForecast } from './utils/weatherclima.js'; //Importa las funciones para obtener datos de la API de clima
+//IMPORTS siempre al principio del archivo
+import { goHome, footerMenu } from "./templates/template.js";
+import { initBackgrounds } from './templates/backgrounds.js';
+import { savedLinks, addLink, createLinkElement } from './utils/linksista.js';
+import { initRelojDigital } from "./utils/relojdigital.js";
+import { getWeatherData, renderCurrentWeather, renderHourlyForecast } from './utils/weatherclima.js';
+import { generarClaveRandom } from './utils/keygenerador.js';
 
-document.addEventListener("DOMContentLoaded", () => { //Escucha el evento para que el código se ejecute solo cuando el HTML esté cargado
-    const mimenu = document.getElementById("goHome"); //Obtiene la referencia del DOM por su ID
-    const mifooter = document.getElementById("footerMenu"); //Obtiene la referencia del DOM por su ID
-    const mireloj = document.getElementById("reloj"); //Obtiene la referencia del DOM por su ID
 
-    if (mimenu) mimenu.innerHTML = goHome(); //Si el elemento del menú existe, inserta el contenido HTML
-    if (mifooter) mifooter.innerHTML = footerMenu(); //Si el elemento del menú existe, inserta el contenido HTML
-    if (mireloj) initRelojDigital(); //Si el elemento del menú existe, inserta el contenido HTML
+//LINKS LISTA
+function initLinkList() {
+    const nameInput = document.getElementById('nombre-input'); // ID de tu HTML
+    const urlInput = document.getElementById('url-input');     // ID de tu HTML
+    const addBtn = document.getElementById('botonAgregar');    // ID de tu HTML
+    const container = document.getElementById('linksContainer');
 
-    initApp(); //Llama a la función principal para cargar los datos del clima
-});
+    if (!container || !addBtn) return; // Si no existen (estamos en otra página), no hace nada
 
-//CLIMA WEATHER
-async function initApp() { //Función asíncrona que gestiona la carga inicial de los datos del clima
-    const defaultCity = 'Donostia'; //Define la ciudad por defecto para la consulta inicial
-    const data = await getWeatherData(defaultCity); //Llama a la API y espera (await) a recibir los datos
+    const render = () => {
+        container.innerHTML = "";
+        savedLinks.forEach(link => {
+            const el = createLinkElement(link, render);
+            container.appendChild(el);
+        });
+    };
 
-    if (data) {
-        renderCurrentWeather(data, 'climaActual'); //Si hay datos, renderiza la información del clima actual en el contenedor 'climaActual'
-        renderHourlyForecast(data.forecast.forecastday[0].hour, 'climaFuturo'); //Renderiza el pronóstico por horas del primer día en el contenedor 'climaFuturo'
-    } else { //Si ocurre un error o no hay datos, busca el contenedor de clima para mostrar un mensaje de error
+    addBtn.addEventListener('click', () => {
+        const name = nameInput.value.trim();
+        const url = urlInput.value.trim();
+        
+        if (addLink(name, url)) {
+            nameInput.value = '';
+            urlInput.value = '';
+            render();
+        } else {
+            alert("Por favor, rellena ambos campos");
+        }
+    });
+
+    render(); // Primera carga
+}
+
+
+//FUNCIÓN PARA EL CLIMA WEATHER
+async function initApp() {
+    const defaultCity = 'Donostia';
+    try {
+        const data = await getWeatherData(defaultCity);
+        if (data) {
+            // Se renderiza solo si los contenedores existen en el HTML actual
+            renderCurrentWeather(data, 'climaActual'); 
+            renderHourlyForecast(data.forecast.forecastday[0].hour, 'climaFuturo');
+        }
+    } catch (error) {
+        console.error("Error en initApp:", error);
         const errorContainer = document.getElementById('climaActual');
-        if (errorContainer) errorContainer.innerHTML = "<p>Error al cargar el clima.</p>"; 
+        if (errorContainer) errorContainer.innerHTML = "<p>Error al cargar el clima.</p>";
     }
 }
+
+
+//FUNCIÓN PARA EL GENERADOR DE CLAVES
+function initKeyGenerator() {
+    const btnGenerar = document.querySelector('button[type="button"]');
+    const inputLength = document.getElementById("length");
+    const resultadoDiv = document.getElementById("resultadoClave");
+
+    // Solo añade el evento si los elementos existen (estamos en la página de la clave)
+    if (btnGenerar && inputLength && resultadoDiv) {
+        btnGenerar.addEventListener('click', () => {
+            const lengthValue = parseInt(inputLength.value);
+
+            if (lengthValue < 12 || lengthValue > 50) {
+                alert("La longitud debe estar entre 12 y 50.");
+                return;
+            }
+
+            const nuevaClave = generarClaveRandom(lengthValue);
+            resultadoDiv.innerHTML = `CONTRASEÑA: <strong>${nuevaClave}</strong>`;
+        });
+    }
+}
+
+
+//EVENTO PRINCIPAL DOMContentLoaded
+// Aquí es donde "arranca" toda tu web una vez el HTML está listo
+document.addEventListener("DOMContentLoaded", () => {
+    // Inyección de Menú y Footer (Común a todas las páginas)
+    const mimenu = document.getElementById("goHome");
+    const mifooter = document.getElementById("footerMenu");
+    
+    if (mimenu) mimenu.innerHTML = goHome();
+    if (mifooter) mifooter.innerHTML = footerMenu();
+
+    // Inicialización de fondos (Común a todas las páginas)
+    initBackgrounds();
+
+    /* Inicializaciones específicas: 
+       Cada función interna ya comprueba si los elementos existen antes de actuar
+    */
+    initLinkList();
+    initRelojDigital();   // Solo actuará si ve el ID "reloj"
+    initApp();            // Solo actuará si ve los IDs de clima
+    initKeyGenerator();   // Solo actuará si ve el ID "length"
+});
+
+
+
+

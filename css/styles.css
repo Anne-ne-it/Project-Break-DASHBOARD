@@ -1,13 +1,14 @@
-/* IMPORTA FUENTES: Roboto para lectura y Share Tech Mono para el look digital */
+/*IMPORTA FUENTES: Roboto para lectura y Share Tech Mono para el look digital */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Share+Tech+Mono&display=swap');
 
 :root {
     /*COLORES CASIO VINTAGE*/
     --color-lcd-green: #8da399; /*Gris-verde de las pantallas LCD apagadas*/
     --color-lcd-text: #2b302e; /*Negro de los números digitales*/
-    --color-casio-blue: #2563eb; /*Azul*/
+    --color-casio-blue: #00d4ff; /*Azul*/
     --color-casio-red: #ef4444; /*Rojo*/
     --color-casio-gold: #d4af37; /*Amarillo*/
+    --color-botones: linear-gradient(135deg, #00d4ff, #0056b3); /*Botones*/
 
     /*FONDOS PARA CONTENEDORES*/
     --color-bg-primary: rgba(0, 0, 0, 0.70); /*Negro con opacidad*/
@@ -43,6 +44,9 @@
     --transition-fast: 0.2s ease-in-out; /*Transición rápida*/
     --transition-normal: 0.3s ease-in-out; /*Transición estándar para animaciones suaves*/
     --transition-slow: 0.7s ease-in-out; /*Transición lenta para animaciones lentas*/
+
+    /*SOMBRA*/
+    --shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
 }
 
 
@@ -67,7 +71,7 @@
 }
 
 .logocohete:hover {
-    background: var(--color-bg-secundary); /*Fondo del icono*/
+    background: var(--color-text-primary); /*Fondo del icono*/
     opacity: 1; /*Sobrescribe el reset si es opaco*/
 }
 
@@ -79,50 +83,196 @@
 
 .goHome-container h2 {
     font-size: 14px; /*Tamaño de la fuente*/
-    color: var(--color-text-primary); /*Color*/
+    color: var(--color-lcd-text); /*Color*/
     letter-spacing: 1px; /*Espacio entre letras*/
     text-transform: uppercase; /*Texto en mayusculas*/
 }
 
-/*FOOTER MENU NAV*/
-#footerMenu {
-    position: fixed; /*Mantiene el menú visible en la misma posición*/
-    bottom: 20px; /*Margen inferior*/
-    right: 20px; /*Margen derecho*/
-    z-index: 1000; /*Queda superpuesto por encima del resto*/
-}
-
-.botones-menu {
-    display: flex; /*Genera la flexbox*/
-    gap: 15px; /*Espacio entre elementos*/
-    list-style: none; /*Quita la decoración por defecto*/
-}
-
-.botones-menu img {
-    width: 25px; /*Ancho*/
-    height: 25px;/*Alto*/
-    opacity: 0.6; /*Opacidad*/
-    transition: var(--transition-fast); /*Transición rápida*/
-}
-
-.botones-menu img:hover {
-    opacity: 1; /*Sube la opacidad*/
-    transform: scale(1.1); /*Aumenta el tamaño*/
-}
-
-
 
 
 /*FONDO DE PANTALLA*/
+body {
+    transition: background-image 1s ease-in-out; /*Transición suave para el cambio de imagen*/
+    background-color: var(--color-lcd-text); /*Un color oscuro de respaldo por si falla la imagen*/
+}
+
 .main {
+    background: transparent !important; /*Mantiene el fondo visible*/
+    min-height: 100vh; /*Ocupa toda la pantalla */
     display: flex; /*Crea la flexbox*/
-    justify-content: center; /*Centra horizontalmente*/
-    align-items: center; /*Centra verticalmente*/
-    height: 100vh; /*Para que ocupe el 100% de la altura del tamaño del navegador*/
+    flex-direction: column; /*Pone un elemento sobre el otro*/
 }
 
 
 
+
+/*INDEX DASHBOARD*/
+.dashboard main {
+    display: grid !important; /*Activa el sistema de rejilla (Grid) por encima de cualquier otra configuración*/
+    grid-template-columns: repeat(3, 1fr) !important; /*Tres columnas iguales*/
+    gap: var(--space-md) !important; /*Distancia entre las columnas*/
+    padding: var(--space-xl) var(--space-md) !important; /*Espacio para que no choquen arriba*/
+    align-items: start !important; /*Alinea los items respecto a tu parte superior*/
+    justify-content: center !important; /*Centra las columnas en la pagina*/
+    min-height: 100vh; /*Para que cada contenedor ocupe todo el alto*/
+    flex-direction: row !important; /*Anula el column de .main*/
+    box-sizing: border-box; /*Asegura que el padding no estire el ancho total*/
+}
+
+.dashboard .links-section, .dashboard #reloj, .dashboard .clima-card, .dashboard .clave {
+    position: relative !important; /*Cambia absolute por relative*/
+    top: auto !important; /*Desactiva la posición fija desde el borde superior*/
+    bottom: auto !important; /*Desactiva la posición fija desde el borde inferior*/
+    left: auto !important; /*Desactiva la posición fija desde el borde izquierdo*/
+    right: auto !important; /*Desactiva la posición fija desde el borde derecho*/
+    width: 100% !important; /*Ocupan el ancho de su columna*/
+    max-width: 450px !important; /*Limita el ancho máximo*/
+    margin: 0 auto !important; /*El 'auto' centrará cada tarjeta dentro de su columna del grid*/
+}
+
+.dashboard .tiempo-container {
+    display: flex; /*Crea una flexbox*/
+    flex-direction: column; /*Pone los elementos uno sobre el otro*/
+    gap: var(--space-xl); /*Distancia entre los elementos*/
+    max-width: 450px; /*Ancho máximo*/
+    margin: 0 auto !important; /*El 'auto' centrará cada tarjeta dentro de su columna del grid*/
+}
+
+
+
+
+/*LINKS LISTA*/
+.links-section {
+    background: var(--color-bg-primary); /*Fondo oscuro translúcido*/
+    backdrop-filter: blur(12px); /*Desenfoque de fondo*/
+    border: 1px solid var(--color-lcd-text); /*Borde de la caja*/
+    border-radius: var(--radius-lg); /*Redondear esquinas*/
+    padding: var(--space-lg); /*Espacio interior*/
+    max-width: 450px; /*En PC nunca medirá más de 450px*/
+    max-height: 700px; /*Nunca medirá más de 200px*/
+    position: absolute; /*Se posiciona respecto al padre*/
+    top: 0; bottom: 0; left: 0; right: 0; /*Intenta ocupar todo el espacio disponible*/
+    margin: auto; /*Para repartir el espacio de forma exacta en los cuatro lados*/
+    color: var(--color-text-primary); /*Color del texto*/
+    box-shadow: var(--shadow); /*Sombra de la caja*/
+    overflow-y: scroll;  /*Crea el scroll */
+}
+
+.likns-titulo {
+    display: flex; /*Crea la flexbox*/
+    align-items: center; /*Alinea los elementos en el centro*/
+    justify-content: space-between; /*Alinea los elementos con espacio igual entre ellos*/
+    margin-bottom: var(--space-md); /*Espacio inderior*/
+    border-bottom: 1px solid var(--color-text-secundary); /*Crea una linea*/
+    padding-bottom: var(--space-md); /*Distancia con el objeto inferior*/
+}
+
+.likns-titulo p {
+    font-size: 24px; /*Tamaño de la fuente*/
+    font-weight: var(--font-weight-bold); /*Grosor/peso de la fuente*/
+    margin: 0; /*Margen*/
+}
+
+.likns-titulo img {
+    width: 40px; /*Ancho*/
+    height: 40px;/*Alto*/
+    border-radius: 50%; /*Para hacer un círculo*/
+    object-fit: cover; /*Evita que la imagen se deforme*/
+    border: 2px solid var(--color-casio-blue); /*Color del borde*/
+}
+
+.input-links {
+    display: flex; /*Crea la flexbox*/
+    flex-direction: column; /*Pone un elemento sobre otro*/
+    gap: var(--space-md); /*Espacio entre elementos*/
+}
+
+.input-links input {
+    background: var(--color-bg-soft); /*Fondo*/
+    border: 1px solid var(--color-bg-secundary); /*Color y grosor del borde*/
+    border-radius:  var(--radius-md); /*Redondeo*/
+    padding: var(--space-sm) var(--space-md); /*Espacio de los elementos con la caja*/
+    color: var(--color-text-primary); /*Color del texto*/
+    font-size: 16px; /*Tamaño de la fuente*/
+    outline: none; /*Para quitar el subrayado*/
+    transition: var(--transition-slow); /*Transición lenta*/
+}
+
+.input-links input:focus {
+    background: var(--color-bg-soft); /*Fondo*/
+    border-color: var(--color-casio-blue); /*Color del borde*/
+    box-shadow: var(--shadow-glow); /*Sombreado*/
+}
+
+.boton-agregar {
+    background: var(--color-botones); /*Fondo*/
+    color: var(--color-text-primary); /*Color del texto*/
+    border: none; /*Borde*/
+    border-radius: var(--radius-md); /*Redondeo*/
+    padding: var(--space-md); /*Espacio entre los elementos y la caja*/
+    font-weight: var(--font-weight-bold); /*Grosor/peso de la fuente*/
+    text-transform: uppercase; /*Texto en mayúsculas*/
+    cursor: pointer; /*El ratón es una mano*/
+    transition: transform 0.2s, filter 0.2s; /*Transiciones*/
+}
+
+.boton-agregar:hover {
+    filter: brightness(1.2); /*Aumenta el brillo del color*/
+    transform: translateY(-2px); /*Desplaza el botón hacia arriba*/
+}
+
+.links-container {
+    list-style: none; /*Quita estilos predeterminados*/
+    padding: 0; /*Elimina el espacio predeterminado de las listas*/
+    margin-top: 30px; /*Espacio superior*/
+}
+
+.links-container li {
+    background: var(--color-bg-soft); /*Fondo*/
+    margin-bottom: var(--space-xs); /*Margen inferior*/
+    padding: var(--space-sm) var(--space-md); /*Espacio entre el elemento y la caja*/
+    border-radius: var(--radius-md); /*Redondea esquinas*/
+    display: flex; /*Crea la flexbox*/
+    justify-content: space-between; /*Alinea los elementos dejando espacio entre ellos, el texto a la izquierda la imagen a la derecha*/
+    align-items: center; /*Alineación al centro*/
+    border-left: 4px solid var(--color-casio-blue); /*Linea de color azul en el borde izquierdo*/
+}
+
+
+.links-container li a {
+    color: var(--color-casio-blue); /*Color del texto*/
+    text-decoration: none; /*Quita decoración predeterminada*/
+    font-size: 14px; /*Tamaño de la fuente*/
+    font-weight: var(--font-weight-medium); /*Grosor/peso de la fuente*/
+    transition: color 0.2s; /*Cambia de color al pasar el ratón*/
+    white-space: nowrap; /*Evita que el texto salte de linea si es muy largo*/
+    overflow: hidden; /*Oculta el texto que se sobresale*/
+    max-width: 80%; /*Limita el ancho del texto*/
+}
+
+.links-container li a:hover {
+    color: var(--color-text-primary); /*Cambia de color*/
+}
+
+.delete-btn {
+    background: transparent; /*El fondo del botón es invisible inicialmente*/
+    color: var(--color-casio-red); /*Color de la x*/
+    border: 1px solid var(--color-casio-red); /*Borde del botón*/
+    border-radius: var(--radius-sm); /*Redondeo de esquinas*/
+    width: 24px; /*Ancho*/
+    height: 24px;/*Alto*/
+    cursor: pointer; /*El cursor se hace mano*/
+    font-size: 12px; /*Tamaño de la x*/
+    display: flex; /*Crea la flexbox*/
+    align-items: center; /*Centra la x verticalmente*/
+    justify-content: center; /*Centra la x horizontalmente*/
+    transition: all 0.2s; /*Suaviza los cambios*/
+}
+
+.delete-btn:hover {
+    background: var(--color-casio-red); /*Se rellena el color del fondo al pasar el ratón*/
+    color: var(--color-text-primary); /*La x se vuelve blanca*/
+}
 
 /*RELOJ*/
 #reloj {
@@ -131,19 +281,26 @@
     align-items: center; /*Alinea los elementos al centro respecto al eje vertical*/
     width: fit-content; /*La caja se ajusta al texto*/
     max-width: 450px; /*En PC nunca medirá más de 450px*/
-    margin: 0 auto; /*Para centrar la caja*/
-    background-color: var(--color-bg-primary); /*Fondo oscuro opaco*/
-    padding: var(--space-lg) var(--space-lg); /*Espacio entre contenido y caja*/
-    border-radius: var(--radius-lg); /*Redondeo de esquinas*/
-    box-shadow: var(--shadow-glow); /*Sombra de la caja*/
+    max-height: 260px; /*Nunca medirá más de 200px*/
+    background: var(--color-bg-primary); /* Fondo oscuro translúcido */
+    backdrop-filter: blur(12px);    /* Desenfoque de fondo */
+    border: 1px solid var(--color-lcd-text); /*Color del borde*/
+    border-radius: var(--radius-lg); /*Redondeo*/
+    padding: var(--space-lg); /*Espacio entre los elementos y la caja*/
+    position: absolute; /*Se posiciona respecto al padre*/
+    top: 0; bottom: 0; left: 0; right: 0; /*Intenta ocupar todo el espacio disponible*/
+    margin: auto; /*Para repartir el espacio de forma exacta en los cuatro lados*/
+    color: var(--color-text-primary); /*Color del texto*/
+    box-shadow: var(--shadow); /*Sombra de la caja*/
 }
 
 #reloj h1 {
-    font-size: 14px; /*Tamaño*/
-    font-weight: var(--font-weight-light); /*Grosor/peso de la fuente*/
-    color: var(--color-text-primary); /*Color*/
-    margin-bottom: var(--space-xs); /*Espacio inferior*/
-    text-transform: lowercase; /*Todo el texto en minusculas*/
+    display: flex; /*Crea la flexbox*/
+    align-items: center; /*Alinea los elementos al centro*/
+    justify-content: space-between; /*Distribuye el espacio entre los elementos*/
+    margin-bottom: var(--space-md); /*Margen inferior*/
+    border-bottom: 1px solid var(--color-text-secundary); /*Crea una linea*/
+    padding-bottom: var(--space-md); /*Separa el contenido del h1*/
 }
 
 #hora {
@@ -166,7 +323,7 @@
 #mensajeReloj {
     font-family: var(--font-family-main); /*Tipografía*/
     font-size: 13px; /*Tamaño*/
-    text-transform: lowercase; /*Texto en minusculas*/
+    text-transform: uppercase; /*Texto en mayúsculas*/
     letter-spacing: 0.5px; /*Espacio entre las letras*/
     text-align: center; /*Alinea el texto en el centro*/
     max-width: 350px; /*Si es muy largo de rompe en dos lineas*/
@@ -178,15 +335,19 @@
 .clima-card {
     display: flex; /*Crea la flexbox*/
     flex-direction: column; /*Pone un elemento sobre el otro*/
-    align-items: center; /*Alinea los elementos al centro*/
-    width: 450px; /*Un ancho fijo para que los hijos sepan dónde recortar*/
-    max-width: 90vw; /*En móviles ocupará el 90% de la pantalla*/
-    margin: 0 auto; /*Para centrar la caja*/
-    background-color: var(--color-bg-primary); /*Fondo oscuro opaco*/
-    padding: var(--space-lg); /*Espacio entre contenido y caja*/
-    border-radius: var(--radius-lg); /*Redondeo de esquinas*/
-    box-shadow: var(--shadow-glow); /*Sombra de la caja*/
-    font-family: var(--font-family-main); /*Tipografía*/
+    align-items: center; /*Alinea los elementos al centro respecto al eje vertical*/
+    max-width: 450px; /*En PC nunca medirá más de 450px*/
+    max-height: 380px; /*Nunca medirá más*/
+    background: var(--color-bg-primary); /*Fondo oscuro translúcido*/
+    backdrop-filter: blur(12px); /*Desenfoque de fondo*/
+    border: 1px solid var(--color-lcd-text); /*Cloro y grosor del borde*/
+    border-radius: var(--radius-lg); /*Redondea las esquinas*/
+    padding: var(--space-lg); /*Distancia de los elemnos y la caja*/
+    position: absolute; /*Se posiciona respecto al padre*/
+    top: 0; bottom: 0; left: 0; right: 0; /*Intenta ocupar todo el espacio disponible*/
+    margin: auto; /*Para repartir el espacio de forma exacta en los cuatro lados*/
+    color: var(--color-text-primary); /*Color del texto*/
+    box-shadow: var(--shadow); /*Sombra de la caja*/
     overflow: hidden; /*Impide que la tarjeta entera tenga scroll*/
 }
 
@@ -198,11 +359,12 @@
 }
 
 .clima-header h2 {
-    font-size: 24px; /*Tamaño de la letra*/
-    font-weight: var(--font-weight-bold); /*Grosor/peso de la fuente*/
-    color: var(--color-text-primary); /*Color*/
-    text-align: center; /*Alinea el texto en el centro*/
-    margin-bottom: var(--space-xs); /*Espacio inferior*/
+    display: flex; /*Crea la flexbox*/
+    align-items: center; /*Centra vertivcalmente*/
+    justify-content: space-between; /*Distribuye el espacio entre los elementos*/
+    margin-bottom: var(--space-md); /*Añade un margen inferior*/
+    border-bottom: 1px solid var(--color-text-secundary); /*Crea una linea*/
+    padding-bottom: var(--space-md); /*Separa el h2 de al linea*/
 }
 
 .clima-header p {
@@ -249,7 +411,7 @@
 .pronostico-horas {
     display: flex; /*Crea la flexbox para las horas*/
     width: 100%; /*Se ajusta al ancho de la tarjeta*/
-    overflow-x: auto; /*ACTIVA EL SCROLL HORIZONTAL SOLO AQUÍ*/
+    overflow-x: auto; /*Activa el scroll horizontal solo aquí*/
     overflow-y: hidden; /*Evita scroll vertical*/
     border-top: 1px solid rgba(255, 255, 255, 0.2); /*Línea de separación*/
     color: var(--color-text-primary); /*Color del texto*/
@@ -275,6 +437,7 @@
     font-weight: bold;/*Grosor/peso de la tipografía*/
     margin-top: 5px; /*Margen superior con el icono*/
 }
+
 .hora-item img {
     width: 35px; /*Mantiene un ancho fijo*/
     height: 35px; /*Mantiene un alto fijo*/
@@ -282,74 +445,221 @@
 
 
 
-
-
-@media (max-width: 768px) {
-    
-/*GO HOME y FOOTER MENU NAV*/
-.goHome-container {
-    top: 10px; /*Margen con la parte superior de la pantalla*/
-    left: 10px; /*Margen con la parte izquierda de la pantalla*/
+/*CLAVES KEY GENERATOR*/
+.clave {
+    display: flex; /*Crea la flexbox*/
+    flex-direction: column; /*Pone un elemento sobre el otro*/
+    align-items: center; /*Alinea los elementos al centro respecto al eje vertical*/
+    width: fit-content; /*La caja se ajusta al texto*/
+    width: 450px; /*En PC nunca medirá más*/
+    height: 420px; /*Nunca medirá más*/
+    background: var(--color-bg-primary); /*Fondo oscuro translúcido*/
+    backdrop-filter: blur(12px); /*Desenfoque de fondo*/
+    border: 1px solid var(--color-lcd-text); /*Color y grosor del borde*/
+    border-radius: var(--radius-lg); /*Para redondear las esquinas*/
+    padding: var(--space-lg); /*Distancia entre elemtos y la caja*/
+    position: absolute; /*Se posiciona respecto al padre*/
+    top: 0; bottom: 0; left: 0; right: 0; /*Intenta ocupar todo el espacio disponible*/
+    margin: auto; /*Para repartir el espacio de forma exacta en los cuatro lados*/
+    color: var(--color-text-primary); /*Color del texto*/
+    box-shadow: var(--shadow); /*Sombreado de la caja*/
 }
 
-.logocohete {
-    padding: 5px 10px; /*Espacio entre contenido y caja*/
+.clave-titulo {
+    display: flex; /*Crea la flexbox*/
+    align-items: center; /*Alinea al centro verticalmente*/
+    justify-content: space-between; /*Distribuye el espacio entre los elementos*/
+    margin-bottom: var(--space-md); /*Añade un margen inferior*/
+    border-bottom: 1px solid var(--color-text-secundary); /*Crea una linea*/
+    gap: var(--space-md); /*Espacio entre elementos*/
 }
 
-.goHome-container img {
-    width: 25px; /*Cohete más pequeño*/
+.clave p {
+    font-size: 24px; /*Tamaño del texto*/
+    font-weight: var(--font-weight-medium); /*Grosor/peso de la tipografía*/
 }
 
-.goHome-container h2 {
-    font-size: 12px; /*Texto más pequeño*/
-    display: none; /*Oculta el texto y deja solo el icono en móviles*/
+.clave img {
+    width: 40px; /*Ancho*/
+    height: 40px; /*Alto*/
+    border-radius: 50%; /*Un círculo perfecto*/
+    object-fit: cover; /*Para que la imagen no se deforme*/
+    border: 2px solid var(--color-casio-blue); /*Color del borde*/
 }
+
+.formulario-clave {
+    display: flex; /*Crea la flexbox*/
+    flex-direction: column; /*Pone un elemento sobre otro*/
+    align-items: center; /*Centra los elementos del formulario*/
+    text-align: center; /*Alinea el texto en el centro*/
+    border-radius: var(--radius-md); /*Redondeo de esquinas*/
+    padding: var(--space-md); /*Distancia entre los elementos y la caja*/
+    font-size: 15px; /*Tamaño de la fuente*/
+    gap: var(--space-md); /*Distancia entre elementos*/
+}
+
+.formulario-clave button {
+    background: var(--color-botones); /*Color del fondo*/
+    color: var(--color-text-primary); /*Color del texto*/
+    border: none; /*Quita el borde*/
+    border-radius: var(--radius-md); /*Redondea las esquinas*/
+    padding: var(--space-md); /*Espacio interior entre elementos y la caja*/
+    font-weight: var(--font-weight-bold); /*Grosor/peso de la tipografía*/
+    text-transform: uppercase; /*Texto en mayúsculas*/
+    cursor: pointer; /*Hca del ratón una mano*/
+    transition: transform 0.2s, filter 0.2s; /*Transición suave*/
+}
+
+.formulario-clave button:hover {
+    filter: brightness(1.2); /*Le da más brillo*/
+    transform: translateY(-2px); /*Eleva el botón*/
+}
+
+.formulario-clave input {
+    background-color: var(--color-text-primary); /*Color de fondo*/
+    color: var(--color-lcd-text); /*Color del texto*/
+    border: 1px solid #444; /*Borde*/
+    padding: var(--space-sm); /*Distandia entre elemento y caja*/
+    border-radius: var(--radius-sm); /*Redondeo*/
+    margin-bottom: var(--space-sm); /*Margen inferior*/
+}
+
+.resultado-calve {
+    background: var(--color-bg-soft); /*Fondo*/
+    border: 1px solid var(--color-bg-secundary); /*Color y grosor del borde*/
+    border-radius:  var(--radius-md); /*Redondea las esquinas*/
+    padding: var(--space-sm) var(--space-md); /*Distancia entre los elementos y la caja*/
+    color: var(--color-text-primary); /*Color del texto*/
+    font-size: 16px; /*Tamaño del texto*/
+    outline: none; /*Quita el subrayado*/
+    transition: var(--transition-slow); /*Transición suave*/
+    max-width: 420px; /*Ancho máximo*/
+    word-wrap: break-word; /*Las palabras largas se rompen y bajan de línea */
+    overflow-wrap: break-word; /*Para romper palabras*/
+}
+
+
+
 
 /*FOOTER MENU NAV*/
 #footerMenu {
-    bottom: 15px; /*Permite centrarlo*/
-    right: 0; /*Permite centrarlo*/
-    left: 0; /*Permite centrarlo*/
-    display: flex; /*Crea la flexbox*/
-    justify-content: center; /*Centra el contenido*/
+    position: fixed; /*Mantiene el menú visible en la misma posición*/
+    bottom: 20px; /*Margen inferior*/
+    right: 20px; /*Margen derecho*/
+    z-index: 1000; /*Queda superpuesto por encima del resto*/
 }
 
 .botones-menu {
-    gap: 25px; /*Más espacio entre iconos*/
-    background: rgba(0, 0, 0, 0.2); /*Un fondo para que se vean mejor*/
-    padding: 10px 20px; /*Espacio entre contenido y caja*/
-    border-radius: 50px; /*Hace un círculo*/
+    display: flex; /*Genera la flexbox*/
+    gap: 15px; /*Espacio entre elementos*/
+    list-style: none; /*Quita la decoración por defecto*/
 }
 
 .botones-menu img {
-    width: 30px; /*Iconos un poco más grandes para el táctil*/
-    height: 30px; /*Iconos un poco más grandes para el táctil*/
-    opacity: 0.9; /*Más visibles en móvil por defecto*/
+    width: 40px; /*Ancho*/
+    height: 40px;/*Alto*/
+    border-radius: 7px; /*Para redondear las esquinas*/
+    opacity: 0.6; /*Opacidad*/
+    transition: var(--transition-fast); /*Transición rápida*/
+}
+
+.botones-menu img:hover {
+    opacity: 1; /*Sube la opacidad*/
+    transform: scale(1.1); /*Aumenta el tamaño*/
 }
 
 
-/*RELOJ*/
-#reloj {
-    width: 90%; /*Que use casi todo el ancho disponible*/
-    padding: var(--space-md); /*Distancia entre los elementos y la caja*/
-}
-
-#hora {
-    font-size: 40px; /*Usamos rem para que escale mejor*/
-}
-
-#fecha {
-    font-size: 16px; /*Tamaño de tipografía*/
-}
-
-#mensajeReloj {
-    font-size: 12px; /*Tamaño de la fuente*/
-    max-width: 280px; /*Evita que sea muy grande*/
-}
 
 
-/*CLIMA WEATHER*/
-.clima-card {
+@media (max-width: 768px) {
+    .dashboard main {
+        grid-template-columns: 1fr !important; /*Pasa de 3 columnas a 1 que ocupa todo el ancho disponible*/
+        padding: var(--space-lg) var(--space-md) !important; /*Menos padding superior*/
+        gap: var(--space-lg) !important; /*Menos espacio entre elementos*/
+    }
+
+    .dashboard .links-section, .dashboard #reloj, .dashboard .clima-card, .dashboard .clave {
+        max-width: 100% !important; /*Menos ancho para que no se corte en pantallas pequeñas*/
+        padding: var(--space-md) !important; /*Espacio interno de las tarjetas reducido*/
+    }
+
+    .dashboard .tiempo-container {
+        gap: var(--space-md); /*Distancia entre el reloj y el clima*/
+    }
+
+
+    /*GO HOME*/
+    .goHome-container {
+        top: 10px; /*Margen con la parte superior de la pantalla*/
+        left: 10px; /*Margen con la parte izquierda de la pantalla*/
+    }
+
+    .logocohete {
+        padding: 5px 10px; /*Espacio entre contenido y caja*/
+    }
+
+    .goHome-container img {
+        width: 25px; /*Cohete más pequeño*/
+    }
+
+    .goHome-container h2 {
+        font-size: 12px; /*Texto más pequeño*/
+        display: none; /*Oculta el texto y deja solo el icono en móviles*/
+    }
+
+
+    /*LINKS LISTA*/
+    .links-section {        
+        max-width: 380px; /*Ancho máximo*/
+        max-height: 400px; /*Alto máximo*/
+        padding: var(--space-md); /*Espacio interno*/
+    }
+
+    .likns-titulo p {
+        font-size: 20px; /*Título un poco más pequeño*/
+    }
+
+    .input-links input {
+        font-size: 14px; /* Texto más cómodo para móviles */
+        padding: var(--space-md); /*Área de toque*/
+    }
+
+    .boton-agregar {
+        padding: var(--space-md); /*Botón más fácil de pulsar con el dedo*/
+    }
+
+    .links-container {
+        max-height: 400px; /*Un poco más de espacio para ver la lista*/
+    }
+
+    .links-container li a {
+        font-size: 13px; /*Ajuste para nombres largos de URL*/
+        max-width: 70%; /*Limita el ancho del enlace*/
+    }
+
+    
+    /*RELOJ*/
+    #reloj {
+        width: 90%; /*Que use casi todo el ancho disponible*/
+        padding: var(--space-md); /*Distancia entre los elementos y la caja*/
+    }
+
+    #hora {
+        font-size: 40px; /*Usamos rem para que escale mejor*/
+    }
+
+    #fecha {
+        font-size: 16px; /*Tamaño de tipografía*/
+    }
+
+    #mensajeReloj {
+        font-size: 12px; /*Tamaño de la fuente*/
+        max-width: 280px; /*Evita que sea muy grande*/
+    }
+
+
+    /*CLIMA WEATHER*/
+    .clima-card {
         width: 90%; /*La tarjeta ocupará el 90% del ancho de la pantalla*/
         padding: var(--space-md); /*Reduce un poco el relleno interno*/
     }
@@ -374,5 +684,58 @@
 
     .hora-item {
         flex: 0 0 55px; /*Los items de hora más estrechos*/
+    }
+
+
+    /*CLAVES KEY GENERATOR*/
+    .clave {
+        width: 90%; /*Ocupa el 90% de la pantalla*/
+        max-width: 380px; /*Ancho máximo*/
+        max-height: 400px; /*Alto máximo*/
+        padding: var(--space-md); /*Espacio interno*/
+    }
+
+    .clave p {
+        font-size: 20px; /*Tamaño de la fuente*/
+        text-align: center; /*Alinea el texto en el centro*/
+    }
+
+    .formulario-clave {
+        font-size: 14px; /*Tamaño de la fuente*/
+        padding: var(--space-sm); /*Espacio interno*/
+    }
+
+    .formulario-clave button {
+        width: 100%; /*El botón ocupa todo el ancho disponible*/
+        padding: var(--space-md); /*Espacio interno*/
+    }
+
+    .resultado-calve {
+        width: 100%; /*La caja del resultado ocupa todo el ancho posible*/
+        word-break: break-all; /*Si la clave es muy larga, saltará de línea*/
+        font-size: 13px; /*Tamaño de la fuenta*/
+    }
+
+
+    /*FOOTER MENU NAV*/
+    #footerMenu {
+        bottom: 15px; /*Permite centrarlo*/
+        right: 0; /*Permite centrarlo*/
+        left: 0; /*Permite centrarlo*/
+        display: flex; /*Crea la flexbox*/
+        justify-content: center; /*Centra el contenido*/
+    }
+
+    .botones-menu {
+        gap: 25px; /*Más espacio entre iconos*/
+        background: rgba(0, 0, 0, 0.2); /*Un fondo para que se vean mejor*/
+        padding: 10px 20px; /*Espacio entre contenido y caja*/
+        border-radius: 50px; /*Hace un círculo*/
+    }
+
+    .botones-menu img {
+        width: 30px; /*Iconos un poco más grandes para el táctil*/
+        height: 30px; /*Iconos un poco más grandes para el táctil*/
+        opacity: 0.9; /*Más visibles en móvil por defecto*/
     }
 }

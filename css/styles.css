@@ -605,6 +605,20 @@ body {
         margin-bottom: 10px; /*Espacio con el margen*/
     }
 
+    .delete-btn {
+        width: 32px !important;  /*Ancho fijo pequeño*/
+        height: 32px !important; /*Altura fija pequeña*/
+        min-width: 32px !important; /*Evita que se encoja*/
+        padding: 0 !important;   /*Quita padding interno*/
+        display: flex !important; /*Crea la felxbox*/
+        align-items: center !important; /*Centra*/
+        justify-content: center !important; /*Centra*/
+        border-radius: 50% !important; /*Lo hace circular*/
+        font-size: 14px !important; /*Tamaño*/
+        line-height: 1 !important; 
+        flex-shrink: 0 !important;
+    }
+
 
     /*GO HOME*/
     .goHome-container {

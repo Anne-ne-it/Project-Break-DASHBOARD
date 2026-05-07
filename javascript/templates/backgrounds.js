@@ -19,8 +19,9 @@ export function initBackgrounds() { //La función que realizará la llamada
         const body = document.body; //Selecciona la etiqueta body para aplicarlo
         const isRoot = window.location.pathname.includes('index.html') || window.location.pathname.endsWith('/') || !window.location.pathname.includes('.html'); //Detecta si el usuario está en la raíz
         const assetPrefix = isRoot ? '' : '../'; //Prefijo para las imagenes
+        const finalPath = `${assetPrefix}${imgseleccionada}`;
         
-        body.style.backgroundImage = `url("/${imgseleccionada}")`; //Ruta de las imagenes
+        body.style.backgroundImage = `url("${finalPath}")`; //Ruta de las imagenes
         body.style.backgroundSize = "cover"; //La imagen cubre toda la pantalla
         body.style.backgroundPosition = "center"; //Centra la imagen para no cortarla
         body.style.backgroundRepeat = "no-repeat"; //Evita que se repita, modo mosaico

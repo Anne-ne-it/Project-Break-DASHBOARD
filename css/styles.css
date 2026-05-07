@@ -575,35 +575,32 @@ body {
 
 @media (max-width: 768px) {
 .dashboard main {
-        grid-template-columns: 1fr !important; /*Una sola columna*/
-        padding: var(--space-md) !important; /*Reduce el padding lateral para ganar aire*/
-        gap: var(--space-md) !important; 
-        width: 100% !important; /*Cambia a 100% para controlar el margen con el padding del padre*/
-        box-sizing: border-box; /*Fundamental para que el padding no sume al ancho*/
+        display: flex !important; /* Cambiamos a Flex para un centrado más sencillo en móvil */
+        flex-direction: column !important;
+        align-items: center !important; /* Centra las tarjetas horizontalmente */
+        justify-content: center !important;
+        padding: var(--space-lg) 0 !important; /* Padding arriba/abajo, 0 a los lados */
+        width: 100% !important;
+        gap: var(--space-md) !important;
     }
 
-    .dashboard .links-section, .dashboard #reloj, .dashboard .clima-card, .dashboard .clave {
-        width: 100% !important; /*Que ocupen el ancho disponible del main*/
-        max-width: 90% !important; /*Ancho máximo*/
-        margin: 0 auto; /*Centrado automático*/
-        padding: var(--space-sm) var(--space-md) !important;
-        border-radius: 12px; /*Suaviza las esquinas en móvil*/
+    .dashboard .links-section, 
+    .dashboard #reloj, 
+    .dashboard .clima-card, 
+    .dashboard .clave {
+        width: 90% !important; /* Ocupan el 90% del ancho del móvil */
+        max-width: 500px !important; /* Evita que en tablets se vean gigantes */
+        margin-left: auto !important; /* El combo de márgenes auto... */
+        margin-right: auto !important; /* ...asegura el centrado total */
+        box-sizing: border-box !important;
     }
-
-    .dashboard #reloj {
-        font-size: 0.9rem !important; /*Baja un poco el tamaño general si es necesario*/
-    }
-
-    #reloj h2 {
-        font-size: 3.5rem !important; /*El número de la hora más grande y claro*/
-        margin-bottom: var(--space-xs); /*Espacio inferior*/
-    }
-
-    .dashboard .tiempo-container {
-        display: flex; /*Crea la flexbox*/
-        flex-direction: column; /*Pone un elemento sobre otro*/
-        align-items: center; /*Centra*/
-        gap: var(--space-sm); /*Gap más pequeño*/
+    
+    /* Ajuste extra para los enlaces que se ven algo apretados */
+    .links-section .link-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
     }
 
     .links-section input, .links-section button {

@@ -584,13 +584,12 @@ body {
 
     .dashboard .links-section, .dashboard #reloj, .dashboard .clima-card, .dashboard .clave {
         width: 100% !important; /*Que ocupen el ancho disponible del main*/
-        max-width: 100% !important; /*Ancho máximo*/
+        max-width: 90% !important; /*Ancho máximo*/
         margin: 0 auto; /*Centrado automático*/
         padding: var(--space-sm) var(--space-md) !important;
         border-radius: 12px; /*Suaviza las esquinas en móvil*/
     }
 
-    /* Optimización del Reloj y Frase */
     .dashboard #reloj {
         font-size: 0.9rem !important; /*Baja un poco el tamaño general si es necesario*/
     }

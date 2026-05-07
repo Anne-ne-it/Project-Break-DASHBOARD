@@ -18,7 +18,8 @@ export function initBackgrounds() { //La función que realizará la llamada
 
         const body = document.body; //Selecciona la etiqueta body para aplicarlo
         const rootPath = window.location.pathname.includes('Project-Break-DASHBOARD') ? '/Project-Break-DASHBOARD/' : '/'; //Operador terniario para hacer las rutas funcionales
-        body.style.backgroundImage = `url("${rootPath}${imgseleccionada}")`; //Ruta de las imagenes
+        const finalPath = `${rootPath}${imgseleccionada}`.replace(/\/+/g, '/');
+        body.style.backgroundImage = `url("${finalPatht}")`; //Ruta de las imagenes
         body.style.backgroundSize = "cover"; //La imagen cubre toda la pantalla
         body.style.backgroundPosition = "center"; //Centra la imagen para no cortarla
         body.style.backgroundRepeat = "no-repeat"; //Evita que se repita, modo mosaico

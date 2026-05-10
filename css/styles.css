@@ -94,13 +94,16 @@
 body {
     transition: background-image 1s ease-in-out; /*Transición suave para el cambio de imagen*/
     background-color: var(--color-lcd-text); /*Un color oscuro de respaldo por si falla la imagen*/
+    overflow-x: hidden;
+    overflow-y: auto;
+
 }
 
-.main {
-    background: transparent !important; /*Mantiene el fondo visible*/
-    min-height: 100vh; /*Ocupa toda la pantalla */
-    display: flex; /*Crea la flexbox*/
-    flex-direction: column; /*Pone un elemento sobre el otro*/
+main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+    padding: 20px;
 }
 
 
@@ -108,34 +111,32 @@ body {
 
 /*INDEX DASHBOARD*/
 .dashboard main {
-    display: grid !important; /*Activa el sistema de rejilla (Grid) por encima de cualquier otra configuración*/
-    grid-template-columns: repeat(3, 1fr) !important; /*Tres columnas iguales*/
-    gap: var(--space-md) !important; /*Distancia entre las columnas*/
-    padding: var(--space-xl) var(--space-md) !important; /*Espacio para que no choquen arriba*/
-    align-items: start !important; /*Alinea los items respecto a tu parte superior*/
-    justify-content: center !important; /*Centra las columnas en la pagina*/
+    display: grid; /*Activa el sistema de rejilla (Grid) por encima de cualquier otra configuración*/
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /*Tres columnas, responsive, luego 2, luego 1*/
+    gap: var(--space-md); /*Distancia entre las columnas*/
+    padding: var(--space-xl) var(--space-md); /*Espacio para que no choquen arriba*/
+    align-items: center; /*Centra*/
+    justify-items: center;
     min-height: 100vh; /*Para que cada contenedor ocupe todo el alto*/
-    flex-direction: row !important; /*Anula el column de .main*/
     box-sizing: border-box; /*Asegura que el padding no estire el ancho total*/
 }
 
-.dashboard .links-section, .dashboard #reloj, .dashboard .clima-card, .dashboard .clave {
-    position: relative !important; /*Cambia absolute por relative*/
-    top: auto !important; /*Desactiva la posición fija desde el borde superior*/
-    bottom: auto !important; /*Desactiva la posición fija desde el borde inferior*/
-    left: auto !important; /*Desactiva la posición fija desde el borde izquierdo*/
-    right: auto !important; /*Desactiva la posición fija desde el borde derecho*/
-    width: 100% !important; /*Ocupan el ancho de su columna*/
-    max-width: 450px !important; /*Limita el ancho máximo*/
-    margin: 0 auto !important; /*El 'auto' centrará cada tarjeta dentro de su columna del grid*/
+.dashboard .links-section, .dashboard .tiempo-container, .dashboard .clave {
+    width: 100%; /*Ocupan el ancho de su columna*/
+    max-width: 500px; /*Limita el ancho máximo*/
+    padding: var(--space-lg);
+    margin: 0 auto; /*El 'auto' centrará cada tarjeta dentro de su columna del grid*/
 }
 
 .dashboard .tiempo-container {
     display: flex; /*Crea una flexbox*/
     flex-direction: column; /*Pone los elementos uno sobre el otro*/
+    align-items: center;
+    justify-content: center;
     gap: var(--space-xl); /*Distancia entre los elementos*/
-    max-width: 450px; /*Ancho máximo*/
-    margin: 0 auto !important; /*El 'auto' centrará cada tarjeta dentro de su columna del grid*/
+    width: 100%;
+    max-width: 500px; /*Ancho máximo*/
+    min-height: 100%;
 }
 
 
@@ -150,15 +151,14 @@ body {
     padding: var(--space-lg); /*Espacio interior*/
     max-width: 450px; /*En PC nunca medirá más de 450px*/
     max-height: 700px; /*Nunca medirá más de 200px*/
-    position: absolute; /*Se posiciona respecto al padre*/
-    top: 0; bottom: 0; left: 0; right: 0; /*Intenta ocupar todo el espacio disponible*/
     margin: auto; /*Para repartir el espacio de forma exacta en los cuatro lados*/
     color: var(--color-text-primary); /*Color del texto*/
     box-shadow: var(--shadow); /*Sombra de la caja*/
-    overflow-y: scroll;  /*Crea el scroll */
+    overflow-y: auto; /*Crea el scroll*/
+    overflow-x: hidden;
 }
 
-.likns-titulo {
+.links-titulo {
     display: flex; /*Crea la flexbox*/
     align-items: center; /*Alinea los elementos en el centro*/
     justify-content: space-between; /*Alinea los elementos con espacio igual entre ellos*/
@@ -167,13 +167,13 @@ body {
     padding-bottom: var(--space-md); /*Distancia con el objeto inferior*/
 }
 
-.likns-titulo p {
+.links-titulo p {
     font-size: 24px; /*Tamaño de la fuente*/
     font-weight: var(--font-weight-bold); /*Grosor/peso de la fuente*/
     margin: 0; /*Margen*/
 }
 
-.likns-titulo img {
+.links-titulo img {
     width: 40px; /*Ancho*/
     height: 40px;/*Alto*/
     border-radius: 50%; /*Para hacer un círculo*/
@@ -279,16 +279,14 @@ body {
     display: flex; /*Crea la flexbox*/
     flex-direction: column; /*Pone un elemento sobre el otro*/
     align-items: center; /*Alinea los elementos al centro respecto al eje vertical*/
-    width: fit-content; /*La caja se ajusta al texto*/
-    width: 450px; /*Ancho*/
-    max-height: 260px; /*Nunca medirá más de 260px*/
+    width: 100%;
+    max-width: 450px;
+    max-height: 3800px; /*Nunca medirá más px*/
     background: var(--color-bg-primary); /* Fondo oscuro translúcido */
     backdrop-filter: blur(12px);    /* Desenfoque de fondo */
     border: 1px solid var(--color-lcd-text); /*Color del borde*/
     border-radius: var(--radius-lg); /*Redondeo*/
     padding: var(--space-lg); /*Espacio entre los elementos y la caja*/
-    position: absolute; /*Se posiciona respecto al padre*/
-    top: 0; bottom: 0; left: 0; right: 0; /*Intenta ocupar todo el espacio disponible*/
     margin: auto; /*Para repartir el espacio de forma exacta en los cuatro lados*/
     color: var(--color-text-primary); /*Color del texto*/
     box-shadow: var(--shadow); /*Sombra de la caja*/
@@ -345,8 +343,6 @@ body {
     border: 1px solid var(--color-lcd-text); /*Cloro y grosor del borde*/
     border-radius: var(--radius-lg); /*Redondea las esquinas*/
     padding: var(--space-lg); /*Distancia de los elemnos y la caja*/
-    position: absolute; /*Se posiciona respecto al padre*/
-    top: 0; bottom: 0; left: 0; right: 0; /*Intenta ocupar todo el espacio disponible*/
     margin: auto; /*Para repartir el espacio de forma exacta en los cuatro lados*/
     color: var(--color-text-primary); /*Color del texto*/
     box-shadow: var(--shadow); /*Sombra de la caja*/
@@ -452,19 +448,19 @@ body {
     display: flex; /*Crea la flexbox*/
     flex-direction: column; /*Pone un elemento sobre el otro*/
     align-items: center; /*Alinea los elementos al centro respecto al eje vertical*/
-    width: fit-content; /*La caja se ajusta al texto*/
+    width: 100%;
     width: 450px; /*En PC nunca medirá más*/
-    height: 420px; /*Nunca medirá más*/
+    height: auto;
     background: var(--color-bg-primary); /*Fondo oscuro translúcido*/
     backdrop-filter: blur(12px); /*Desenfoque de fondo*/
     border: 1px solid var(--color-lcd-text); /*Color y grosor del borde*/
     border-radius: var(--radius-lg); /*Para redondear las esquinas*/
     padding: var(--space-lg); /*Distancia entre elemtos y la caja*/
-    position: absolute; /*Se posiciona respecto al padre*/
-    top: 0; bottom: 0; left: 0; right: 0; /*Intenta ocupar todo el espacio disponible*/
     margin: auto; /*Para repartir el espacio de forma exacta en los cuatro lados*/
     color: var(--color-text-primary); /*Color del texto*/
     box-shadow: var(--shadow); /*Sombreado de la caja*/
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .clave-titulo {
@@ -526,18 +522,19 @@ body {
     margin-bottom: var(--space-sm); /*Margen inferior*/
 }
 
-.resultado-calve {
-    background: var(--color-bg-soft); /*Fondo*/
-    border: 1px solid var(--color-bg-secundary); /*Color y grosor del borde*/
-    border-radius:  var(--radius-md); /*Redondea las esquinas*/
-    padding: var(--space-sm) var(--space-md); /*Distancia entre los elementos y la caja*/
-    color: var(--color-text-primary); /*Color del texto*/
-    font-size: 16px; /*Tamaño del texto*/
-    outline: none; /*Quita el subrayado*/
-    transition: var(--transition-slow); /*Transición suave*/
-    max-width: 420px; /*Ancho máximo*/
-    word-wrap: break-word; /*Las palabras largas se rompen y bajan de línea */
-    overflow-wrap: break-word; /*Para romper palabras*/
+.resultado-clave {
+    width: 100%;
+    max-width: 100%;
+    background-color: var(--color-bg-soft);
+    border: 1px solid var(--color-bg-secundary);
+    border-radius: var(--space-sm) var(--space-md);
+    color: var(--color-text-primary);
+    font-size: 16px;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    white-space: normal;
+    text-align: center;
 }
 
 
@@ -574,199 +571,170 @@ body {
 
 
 @media (max-width: 768px) {
-.dashboard main {
-        display: flex !important; /*Cambiamos a Flex para un centrado más sencillo en móvil*/
-        flex-direction: column !important;
-        align-items: center !important; /*Centra las tarjetas horizontalmente*/
-        justify-content: center !important;
-        padding: var(--space-lg) 0 !important; /*Padding arriba/abajo, 0 a los lados*/
-        width: 100% !important;
-        gap: var(--space-md) !important;
+
+    /* =========================
+       LAYOUT PRINCIPAL
+    ========================== */
+    .dashboard main {
+        display: grid; /* mantenemos grid (NO flex) */
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+        padding: var(--space-md);
+        justify-items: center;
+        align-items: start;
+        min-height: auto;
     }
 
-    .dashboard .links-section, .dashboard #reloj, .dashboard .clima-card, .dashboard .clave {
-        width: 90% !important; /*Ocupan el 90% del ancho del móvil*/
-        max-width: 380px !important; /*Evita que se vean gigantes */
-        margin-left: auto !important; /*asegura el centrado total*/
-        margin-right: auto !important; /*asegura el centrado total*/
-        box-sizing: border-box !important;
-    }
-    
-    .links-section .link-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 90%;
+    /* Cards unificadas */
+    .dashboard .links-section,
+    .dashboard #reloj,
+    .dashboard .clima-card,
+    .dashboard .clave {
+        width: min(92%, 380px);
+        margin: 0 auto;
+        box-sizing: border-box;
     }
 
-    .links-section input, .links-section button {
-        width: 100% !important; /*Ancho máximo*/
-        height: 45px; /*Altura táctil cómoda*/
-        margin-bottom: 10px; /*Espacio con el margen*/
-    }
-
-    .delete-btn {
-        width: 30px !important; 
-        height: 30px !important;
-        min-width: 30px !important; /* Evita que se deforme */        
-        padding: 0 !important;   /*Quita padding interno*/
-        display: flex !important; /*Crea la felxbox*/
-        flex-direction: row !important;
-        align-items: center !important; /*Centra*/
-        justify-content: center !important; /*Centra*/
-        border-radius: 50% !important; /*Lo hace circular*/
-        font-size: 14px !important; /*Tamaño*/
-    }
-
-
-    /*GO HOME*/
+    /* =========================
+       GO HOME
+    ========================== */
     .goHome-container {
-        top: 10px; /*Margen con la parte superior de la pantalla*/
-        left: 10px; /*Margen con la parte izquierda de la pantalla*/
+        top: 10px;
+        left: 10px;
     }
 
     .logocohete {
-        padding: 5px 10px; /*Espacio entre contenido y caja*/
+        padding: 6px 10px;
     }
 
     .goHome-container img {
-        width: 25px; /*Cohete más pequeño*/
+        width: 24px;
     }
 
     .goHome-container h2 {
-        font-size: 12px; /*Texto más pequeño*/
-        display: none; /*Oculta el texto y deja solo el icono en móviles*/
+        display: none;
     }
 
-
-    /*LINKS LISTA*/
-    .links-section {        
-        max-width: 380px; /*Ancho máximo*/
-        max-height: 400px; /*Alto máximo*/
-        padding: var(--space-md); /*Espacio interno*/
+    /* =========================
+       LINKS
+    ========================== */
+    .links-section {
+        max-height: none; /* ❗ importante: evitar cortes */
+        padding: var(--space-md);
     }
 
-    .likns-titulo p {
-        font-size: 20px; /*Título un poco más pequeño*/
+    .links-titulo p {
+        font-size: 18px;
     }
 
     .input-links input {
-        font-size: 14px; /* Texto más cómodo para móviles */
-        padding: var(--space-md); /*Área de toque*/
+        font-size: 14px;
+        padding: var(--space-md);
     }
 
     .boton-agregar {
-        padding: var(--space-md); /*Botón más fácil de pulsar con el dedo*/
-    }
-
-    .links-container {
-        max-height: 400px; /*Un poco más de espacio para ver la lista*/
+        width: 100%;
     }
 
     .links-container li a {
-        font-size: 13px; /*Ajuste para nombres largos de URL*/
-        max-width: 70%; /*Limita el ancho del enlace*/
+        font-size: 13px;
+        max-width: 70%;
     }
 
-    
-    /*RELOJ*/
-    #reloj {
-        width: 90%; /*Que use casi todo el ancho disponible*/
-        padding: var(--space-md); /*Distancia entre los elementos y la caja*/
+    /* FIX: selector inexistente eliminado */
+
+    /* =========================
+       DELETE BUTTON FIX
+    ========================== */
+    .delete-btn {
+        width: 32px;
+        height: 32px;
+        justify-content: center; /* FIX TYPO */
     }
 
+    /* =========================
+       RELOJ
+    ========================== */
     #hora {
-        font-size: 40px; /*Usamos rem para que escale mejor*/
+        font-size: 36px;
     }
 
     #fecha {
-        font-size: 16px; /*Tamaño de tipografía*/
+        font-size: 14px;
     }
 
     #mensajeReloj {
-        font-size: 12px; /*Tamaño de la fuente*/
-        max-width: 280px; /*Evita que sea muy grande*/
+        font-size: 12px;
+        max-width: 100%;
     }
 
-
-    /*CLIMA WEATHER*/
+    /* =========================
+       CLIMA
+    ========================== */
     .clima-card {
-        width: 90%; /*La tarjeta ocupará el 90% del ancho de la pantalla*/
-        padding: var(--space-md); /*Reduce un poco el relleno interno*/
+        padding: var(--space-md);
     }
 
     .temp-principal {
-        font-size: 36px; /*Reduce el tamaño de la temperatura para que quepa mejor*/
-        margin-right: var(--space-sm); /*Acorta el margen derecho*/
+        font-size: 34px;
+        margin-right: var(--space-sm);
     }
 
     .clima-header h2 {
-        font-size: 20px; /*Ciudad un poco más pequeña*/
+        font-size: 18px;
     }
 
     .detalles-secundarios {
-        font-size: 14px; /*Datos de humedad/viento un poco más pequeños*/
+        font-size: 13px;
     }
 
     .pronostico-horas {
-        gap: 10px; /*Reduce el espacio entre horas para ver más items a la vez*/
-        padding-bottom: 10px; /*Espacio extra para que la barra de scroll no tape la temperatura*/
+        gap: 8px;
+        padding-bottom: var(--space-sm);
+        scroll-snap-type: x mandatory;
     }
 
     .hora-item {
-        flex: 0 0 55px; /*Los items de hora más estrechos*/
+        flex: 0 0 50px;
+        scroll-snap-align: start;
     }
 
-
-    /*CLAVES KEY GENERATOR*/
+    /* =========================
+       CLAVE GENERATOR
+    ========================== */
     .clave {
-        width: 90%; /*Ocupa el 90% de la pantalla*/
-        max-width: 380px; /*Ancho máximo*/
-        max-height: 400px; /*Alto máximo*/
-        padding: var(--space-md); /*Espacio interno*/
-    }
-
-    .clave p {
-        font-size: 20px; /*Tamaño de la fuente*/
-        text-align: center; /*Alinea el texto en el centro*/
-    }
-
-    .formulario-clave {
-        font-size: 14px; /*Tamaño de la fuente*/
-        padding: var(--space-sm); /*Espacio interno*/
+        width: min(92%, 380px);
+        height: auto; /* ❗ evitar overflow fijo */
+        padding: var(--space-md);
     }
 
     .formulario-clave button {
-        width: 100%; /*El botón ocupa todo el ancho disponible*/
-        padding: var(--space-md); /*Espacio interno*/
+        width: 100%;
     }
 
-    .resultado-calve {
-        width: 100%; /*La caja del resultado ocupa todo el ancho posible*/
-        word-break: break-all; /*Si la clave es muy larga, saltará de línea*/
-        font-size: 13px; /*Tamaño de la fuenta*/
+    .resultado-clave {
+        width: 100%;
+        font-size: 13px;
     }
 
-
-    /*FOOTER MENU NAV*/
+    /* =========================
+       FOOTER
+    ========================== */
     #footerMenu {
-        bottom: 15px; /*Permite centrarlo*/
-        right: 0; /*Permite centrarlo*/
-        left: 0; /*Permite centrarlo*/
-        display: flex; /*Crea la flexbox*/
-        justify-content: center; /*Centra el contenido*/
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
     }
 
     .botones-menu {
-        gap: 25px; /*Más espacio entre iconos*/
-        background: rgba(0, 0, 0, 0.2); /*Un fondo para que se vean mejor*/
-        padding: 10px 20px; /*Espacio entre contenido y caja*/
-        border-radius: 50px; /*Hace un círculo*/
+        gap: 20px;
+        padding: 8px 16px;
+        border-radius: 999px;
     }
 
     .botones-menu img {
-        width: 30px; /*Iconos un poco más grandes para el táctil*/
-        height: 30px; /*Iconos un poco más grandes para el táctil*/
-        opacity: 0.9; /*Más visibles en móvil por defecto*/
+        width: 28px;
+        height: 28px;
     }
 }

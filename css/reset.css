@@ -81,3 +81,18 @@ table {
   border-collapse: collapse; /*Elimina el espacio entre las celdas de la tabla para un diseño más compacto y limpio*/
   border-spacing: 0; /*Elimina el espacio entre las celdas de la tabla para un diseño más compacto y limpio*/
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-text-primary);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.1);
+}
+

@@ -25,7 +25,7 @@ export function generarClaveRandom(lengthValue) { //Función para crear la contr
         clave += obtenerCaracterRandom(todos); //Añade caracteres aleatorios del grupo total
     }
 
-    //Mezclamos el resultado final
+    //Mezcla el resultado final
     return clave.split('') //Convierte la cadena de texto en array
     .sort(() => Math.random() - 0.5) //Reordena el array de forma aleatoria
     .join(''); //Vuelve a unir los caracteres del array en una sola cadena

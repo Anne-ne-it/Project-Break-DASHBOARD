@@ -82,8 +82,7 @@ function initKeyGenerator() {
 }
 
 
-//EVENTO PRINCIPAL DOMContentLoaded
-//Aquí es donde "arranca" toda la web una vez el HTML está listo
+//EVENTO PRINCIPAL DOMContentLoaded, arranca toda la web una vez el HTML está listo
 document.addEventListener("DOMContentLoaded", () => {
     //Inyección de Menú y Footer
     const mimenu = document.getElementById("goHome");
@@ -94,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     initBackgrounds(); //Inicialización de fondos
 
-    /*Cada función interna ya comprueba si los elementos existen antes de actuar*/
+    //Cada función interna ya comprueba si los elementos existen antes de actuar
     initLinkList(); //Solo actuará si ve el ID 
     initRelojDigital(); //Solo actuará si ve el ID 
     initApp(); //Solo actuará si ve los IDs 

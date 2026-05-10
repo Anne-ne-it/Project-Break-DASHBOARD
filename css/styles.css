@@ -56,12 +56,12 @@
     position: fixed; /*Siempre visible*/
     top: 20px; /*Distancia arriba*/
     left: 20px; /*Distancia a la izquierda*/
-    z-index: 1000;/*Por encima de todo*/
+    z-index: 1000; /*Por encima de todo*/
 }
 
 .logocohete {
     display: flex; /*Activa la flexbox*/
-    align-items: center; /*Alinea el icono y el texto*/
+    align-items: center; /*Alinea el icono y el texto verticalmente*/
     gap: var(--space-xs); /*Espacio entre los elementos*/
     padding: var(--space-xs) var(--space-sm); /*Margen interno*/
     border-radius: var(--radius-md); /*Redondea las esquinas*/
@@ -94,16 +94,16 @@
 body {
     transition: background-image 1s ease-in-out; /*Transición suave para el cambio de imagen*/
     background-color: var(--color-lcd-text); /*Un color oscuro de respaldo por si falla la imagen*/
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow-x: hidden; /*Evita scroll horizontal*/ 
+    overflow-y: auto; /*Permite scroll vertical*/
 
 }
 
 main {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 20px;
-    padding: 20px;
+    display: grid; /*Sistema de rejilla*/
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /*Tres columnas iguales*/
+    gap: 20px; /*Distancia entre columnas*/
+    padding: 20px; /*Espacio interior*/
 }
 
 
@@ -116,7 +116,7 @@ main {
     gap: var(--space-md); /*Distancia entre las columnas*/
     padding: var(--space-xl) var(--space-md); /*Espacio para que no choquen arriba*/
     align-items: center; /*Centra*/
-    justify-items: center;
+    justify-items: center; /*Centrar*/
     min-height: 100vh; /*Para que cada contenedor ocupe todo el alto*/
     box-sizing: border-box; /*Asegura que el padding no estire el ancho total*/
 }
@@ -124,19 +124,19 @@ main {
 .dashboard .links-section, .dashboard .tiempo-container, .dashboard .clave {
     width: 100%; /*Ocupan el ancho de su columna*/
     max-width: 500px; /*Limita el ancho máximo*/
-    padding: var(--space-lg);
+    padding: var(--space-lg); /*Espacio interno*/
     margin: 0 auto; /*El 'auto' centrará cada tarjeta dentro de su columna del grid*/
 }
 
 .dashboard .tiempo-container {
     display: flex; /*Crea una flexbox*/
     flex-direction: column; /*Pone los elementos uno sobre el otro*/
-    align-items: center;
-    justify-content: center;
+    align-items: center; /*Centrar*/
+    justify-content: center; /*Centrar*/
     gap: var(--space-xl); /*Distancia entre los elementos*/
-    width: 100%;
+    width: 100%; /*Ocupa en ancho máximo*/
     max-width: 500px; /*Ancho máximo*/
-    min-height: 100%;
+    min-height: 100%; /*Altura*/
 }
 
 
@@ -150,12 +150,12 @@ main {
     border-radius: var(--radius-lg); /*Redondear esquinas*/
     padding: var(--space-lg); /*Espacio interior*/
     max-width: 450px; /*En PC nunca medirá más de 450px*/
-    max-height: 700px; /*Nunca medirá más de 200px*/
+    max-height: 700px; /*Nunca medirá más px*/
     margin: auto; /*Para repartir el espacio de forma exacta en los cuatro lados*/
     color: var(--color-text-primary); /*Color del texto*/
     box-shadow: var(--shadow); /*Sombra de la caja*/
     overflow-y: auto; /*Crea el scroll*/
-    overflow-x: hidden;
+    overflow-x: hidden; /*Evita el scroll*/
 }
 
 .links-titulo {
@@ -279,11 +279,11 @@ main {
     display: flex; /*Crea la flexbox*/
     flex-direction: column; /*Pone un elemento sobre el otro*/
     align-items: center; /*Alinea los elementos al centro respecto al eje vertical*/
-    width: 100%;
-    max-width: 450px;
-    max-height: 3800px; /*Nunca medirá más px*/
-    background: var(--color-bg-primary); /* Fondo oscuro translúcido */
-    backdrop-filter: blur(12px);    /* Desenfoque de fondo */
+    width: 100%; /*Ancho máximo*/
+    max-width: 450px; /*Ancho máximo ocupado*/
+    max-height: 380px; /*Nunca medirá más px*/
+    background: var(--color-bg-primary); /*Fondo oscuro translúcido*/
+    backdrop-filter: blur(12px); /*Desenfoque de fondo*/
     border: 1px solid var(--color-lcd-text); /*Color del borde*/
     border-radius: var(--radius-lg); /*Redondeo*/
     padding: var(--space-lg); /*Espacio entre los elementos y la caja*/
@@ -340,7 +340,7 @@ main {
     max-height: 380px; /*Nunca medirá más*/
     background: var(--color-bg-primary); /*Fondo oscuro translúcido*/
     backdrop-filter: blur(12px); /*Desenfoque de fondo*/
-    border: 1px solid var(--color-lcd-text); /*Cloro y grosor del borde*/
+    border: 1px solid var(--color-lcd-text); /*Color y grosor del borde*/
     border-radius: var(--radius-lg); /*Redondea las esquinas*/
     padding: var(--space-lg); /*Distancia de los elemnos y la caja*/
     margin: auto; /*Para repartir el espacio de forma exacta en los cuatro lados*/
@@ -448,9 +448,9 @@ main {
     display: flex; /*Crea la flexbox*/
     flex-direction: column; /*Pone un elemento sobre el otro*/
     align-items: center; /*Alinea los elementos al centro respecto al eje vertical*/
-    width: 100%;
+    width: 100%; /*Ancho*/
     width: 450px; /*En PC nunca medirá más*/
-    height: auto;
+    height: auto; /*altura automática*/
     background: var(--color-bg-primary); /*Fondo oscuro translúcido*/
     backdrop-filter: blur(12px); /*Desenfoque de fondo*/
     border: 1px solid var(--color-lcd-text); /*Color y grosor del borde*/
@@ -459,8 +459,8 @@ main {
     margin: auto; /*Para repartir el espacio de forma exacta en los cuatro lados*/
     color: var(--color-text-primary); /*Color del texto*/
     box-shadow: var(--shadow); /*Sombreado de la caja*/
-    box-sizing: border-box;
-    overflow: hidden;
+    box-sizing: border-box; /*Incluye el padding y borde dentro del cálculo del ancho*/
+    overflow: hidden; /*Recorta cualquier contenido que exceda los límites de la caja*/
 }
 
 .clave-titulo {
@@ -504,7 +504,7 @@ main {
     padding: var(--space-md); /*Espacio interior entre elementos y la caja*/
     font-weight: var(--font-weight-bold); /*Grosor/peso de la tipografía*/
     text-transform: uppercase; /*Texto en mayúsculas*/
-    cursor: pointer; /*Hca del ratón una mano*/
+    cursor: pointer; /*Hace del ratón una mano*/
     transition: transform 0.2s, filter 0.2s; /*Transición suave*/
 }
 
@@ -524,17 +524,17 @@ main {
 
 .resultado-clave {
     width: 100%;
-    max-width: 100%;
-    background-color: var(--color-bg-soft);
-    border: 1px solid var(--color-bg-secundary);
-    border-radius: var(--space-sm) var(--space-md);
-    color: var(--color-text-primary);
-    font-size: 16px;
-    box-sizing: border-box;
-    overflow-wrap: break-word;
-    word-break: break-all;
-    white-space: normal;
-    text-align: center;
+    max-width: 100%; /*Ocupa el máximo del ancho*/
+    background-color: var(--color-bg-soft); /*Color de fondo*/
+    border: 1px solid var(--color-bg-secundary); /*Color y grosor del borde*/
+    border-radius: var(--space-sm) var(--space-md); /*Redondea las esquinas*/
+    color: var(--color-text-primary); /*Color del texto*/
+    font-size: 16px; /*Tamaño del texto*/
+    box-sizing: border-box; /*Mantiene el tamaño con el padding*/
+    overflow-wrap: break-word; /*Rompre palabras largas y evita desborde*/
+    word-break: break-all; /*Fuerza la ruptura de cadenas largas de texto*/
+    white-space: normal; /*Permite el salto de linea*/
+    text-align: center; /*Centra el texto*/
 }
 
 
@@ -572,169 +572,146 @@ main {
 
 @media (max-width: 768px) {
 
-    /* =========================
-       LAYOUT PRINCIPAL
-    ========================== */
+    /*DASHBOARD*/
     .dashboard main {
-        display: grid; /* mantenemos grid (NO flex) */
-        grid-template-columns: 1fr;
-        gap: var(--space-md);
-        padding: var(--space-md);
-        justify-items: center;
-        align-items: start;
-        min-height: auto;
+        display: grid; /*Mantiene grid*/
+        grid-template-columns: 1fr; /*Una columna*/
+        gap: var(--space-md); /*Espacio entre las tarjetas*/
+        padding: var(--space-md); /*Reduce el espacio en móviles*/
+        justify-items: center; /*Centrar*/
+        align-items: start; /*Alinea los elementos al inicio del eje vertical*/
+        min-height: auto; /*Quita la altura mínima*/
     }
 
-    /* Cards unificadas */
-    .dashboard .links-section,
-    .dashboard #reloj,
-    .dashboard .clima-card,
-    .dashboard .clave {
-        width: min(92%, 380px);
-        margin: 0 auto;
-        box-sizing: border-box;
+    .dashboard .links-section, .dashboard #reloj, .dashboard .clima-card, .dashboard .clave {
+        width: min(90%, 380px); /*Ajusta el ancho*/
+        margin: 0 auto; /*Centra las tarjetas horizontales*/
+        box-sizing: border-box; /*Asegura el tamaño*/
     }
 
-    /* =========================
-       GO HOME
-    ========================== */
+    /*GO HOME*/
     .goHome-container {
-        top: 10px;
-        left: 10px;
+        top: 10px; /*Margen superrior*/
+        left: 10px; /*Margen izquierdo*/
     }
 
     .logocohete {
-        padding: 6px 10px;
+        padding: 6px 10px; /*Compacta el botón*/
     }
 
     .goHome-container img {
-        width: 24px;
+        width: 24px; /*Reduce el tamaño*/
     }
 
     .goHome-container h2 {
-        display: none;
+        display: none; /*Oculta el texto home*/
     }
 
-    /* =========================
-       LINKS
-    ========================== */
+    /*LINKS*/
     .links-section {
-        max-height: none; /* ❗ importante: evitar cortes */
-        padding: var(--space-md);
+        max-height: none; /*Evitar cortes*/
+        padding: var(--space-md); /*Reduce el relleno*/
     }
 
     .links-titulo p {
-        font-size: 18px;
+        font-size: 18px; /*Tamaño de la fuente*/
     }
 
     .input-links input {
-        font-size: 14px;
-        padding: var(--space-md);
+        font-size: 14px; /*Tamaño de la fuente*/
+        padding: var(--space-md); /*Aumenta el area táctil*/
     }
 
     .boton-agregar {
-        width: 100%;
+        width: 100%; /*El botón ocupa todo el ancho*/
     }
 
     .links-container li a {
-        font-size: 13px;
-        max-width: 70%;
+        font-size: 13px; /*Tamaño de la fuente*/
+        max-width: 70%; /*Limita el ancho cel texto para no pisar el botón*/
     }
 
-    /* FIX: selector inexistente eliminado */
-
-    /* =========================
-       DELETE BUTTON FIX
-    ========================== */
-    .delete-btn {
-        width: 32px;
-        height: 32px;
-        justify-content: center; /* FIX TYPO */
+    .delete-btn { 
+        width: 32px; /*Ancho del botón*/
+        height: 32px; /*Alto del botón*/
+        justify-content: center; /*Centrta la x*/
     }
 
-    /* =========================
-       RELOJ
-    ========================== */
+    /*RELOJ*/
     #hora {
-        font-size: 36px;
+        font-size: 36px; /*Tamaño de la hora*/
     }
 
     #fecha {
-        font-size: 14px;
+        font-size: 14px; /*Tamaño de la fuente*/
     }
 
     #mensajeReloj {
-        font-size: 12px;
-        max-width: 100%;
+        font-size: 12px; /*Tamaño de la fuente*/
+        max-width: 100%; /*El texto usa todo el ancho*/
     }
 
-    /* =========================
-       CLIMA
-    ========================== */
+    /*CLIMA*/
     .clima-card {
-        padding: var(--space-md);
+        padding: var(--space-md); /*Reduce el padding interno*/
     }
 
     .temp-principal {
-        font-size: 34px;
-        margin-right: var(--space-sm);
+        font-size: 34px; /*Tamaño*/
+        margin-right: var(--space-sm); /*Menos margen lateral*/
     }
-
+ 
     .clima-header h2 {
-        font-size: 18px;
+        font-size: 18px; /*Tamaño del texto*/
     }
 
     .detalles-secundarios {
-        font-size: 13px;
+        font-size: 13px; /*Tamaño de humedad y viento*/
     }
 
     .pronostico-horas {
-        gap: 8px;
-        padding-bottom: var(--space-sm);
-        scroll-snap-type: x mandatory;
+        gap: 8px; /*Menos espacio entre horas*/
+        padding-bottom: var(--space-sm); /*Espacio con el borde*/
+        scroll-snap-type: x mandatory; /*Activa el desplazamiento horizontal*/
     }
 
     .hora-item {
-        flex: 0 0 50px;
-        scroll-snap-align: start;
+        flex: 0 0 50px; /*Define un ancho fijo*/
+        scroll-snap-align: start; /*Barra de scroll*/
     }
 
-    /* =========================
-       CLAVE GENERATOR
-    ========================== */
+    /*CLAVE GENERATOR*/
     .clave {
-        width: min(92%, 380px);
-        height: auto; /* ❗ evitar overflow fijo */
-        padding: var(--space-md);
+        width: min(92%, 380px); /*Ancho*/
+        height: auto; /*Evitar overflow fijo*/
+        padding: var(--space-md); /*Espacio interno*/
     }
 
     .formulario-clave button {
-        width: 100%;
+        width: 100%; /*Ocupa el máximo de su ancho*/
     }
 
     .resultado-clave {
-        width: 100%;
-        font-size: 13px;
+        width: 100%; /*Ocupa el máximo de su ancho*/
+        font-size: 13px; /*Tamaño de la feunte*/
     }
 
-    /* =========================
-       FOOTER
-    ========================== */
+    /*FOOTER*/
     #footerMenu {
-        left: 0;
-        right: 0;
-        display: flex;
-        justify-content: center;
+        left: 0; /*Margen izquierdo*/
+        right: 0; /*Margen derecho*/
+        display: flex; /*Crea la flexbox*/
+        justify-content: center; /*Centrar*/
     }
 
     .botones-menu {
-        gap: 20px;
-        padding: 8px 16px;
-        border-radius: 999px;
+        gap: 20px; /*Espacio entre los elementos*/
+        padding: 8px 16px; /*Distancia interna*/
+        border-radius: 9px; /*Para redondear las esquinas*/
     }
 
     .botones-menu img {
-        width: 28px;
-        height: 28px;
+        width: 28px; /*Ancho de la imagen*/
+        height: 28px; /*Altura de la imagen*/
     }
 }

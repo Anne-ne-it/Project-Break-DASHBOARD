@@ -1,7 +1,7 @@
-// Recuperar de LocalStorage, si no hay datos inicia un array vacio
+//Recupera de LocalStorage, si no hay datos inicia un array vacio
 export let savedLinks = JSON.parse(localStorage.getItem('links')) || []; 
 
-// --- NUEVA FUNCIÓN DE VALIDACIÓN (Privada para este módulo) ---
+//FUNCIÓN DE VALIDACIÓn
 const isValidUrl = (url) => {
     try {
         const pattern = new RegExp('^(https?:\\/\\/)?'+ 
@@ -17,24 +17,24 @@ const isValidUrl = (url) => {
 };
 
 export function addLink(name, url) { 
-    // 1. Verificamos que los campos no estén vacíos
+    //Verifica que los campos no estén vacíos
     if (!name || !url) {
         return false; 
     }
 
-    // 2. NUEVA VALIDACIÓN: Verificamos si la URL es válida antes de guardar
+    //Verifica si la URL es válida antes de guardar
     if (!isValidUrl(url)) {
         alert("La URL introducida no es válida. Por favor, asegúrate de que sea un enlace correcto.");
-        return false; // Cortamos la ejecución aquí
+        return false; //Corta la ejecución aquí
     }
 
-    // 3. Si todo está bien, guardamos
+    //Si todo está bien, guarda
     savedLinks.push({ name, url }); 
     localStorage.setItem('links', JSON.stringify(savedLinks)); 
     return true; 
 }
 
-// Lógica para borrar
+//Lógica para borrar
 export function deleteLink(name, url) { 
     savedLinks = savedLinks.filter(link => link.name !== name || link.url !== url); 
     localStorage.setItem('links', JSON.stringify(savedLinks)); 

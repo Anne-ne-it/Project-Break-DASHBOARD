@@ -14,7 +14,7 @@ export const backgrounds = [ //Array de rutas de las fotos para el fondo
 export function initBackgrounds() { //La función que realizará la llamada
     const changeBackground = () => { //Cofiguración para elegir y aplicar las imagenes
         const imgIndex = Math.floor(Math.random() * backgrounds.length); //Crea el indice de 0 a 9
-        const imgseleccionada = backgrounds[imgIndex];
+        const imgseleccionada = backgrounds[imgIndex]; //Lógica
 
         const body = document.body; //Selecciona la etiqueta body para aplicarlo
         const isRoot = window.location.pathname.includes('index.html') || window.location.pathname.endsWith('/') || !window.location.pathname.includes('.html'); //Detecta si el usuario está en la raíz

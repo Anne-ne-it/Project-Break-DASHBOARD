@@ -83,16 +83,16 @@ table {
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 8px; /*Ancho de la scrollbar vertical*/
+  height: 8px; /*Alto de la scriollbar*/
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-text-primary);
-  border-radius: 10px;
+  background: var(--color-text-primary); /*Color*/
+  border-radius: 10px; /*Redondea los bordes*/
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.1); /*Color de fondo "carril"*/
 }
 
